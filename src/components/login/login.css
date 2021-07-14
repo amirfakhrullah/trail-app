@@ -1,0 +1,70 @@
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 40px;
+}
+
+.login-container {
+    width: 350px;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 40px;
+    padding: 30px;
+    margin: 30px;
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+}
+
+.login-form {
+    padding-top: 20px;
+}
+
+.form-input {
+    width: 318px;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 1px solid #919090;
+}
+
+.form-button {
+    width: 100%;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 1.2em;
+    background-color: #8481E2;
+    border: 0px;
+}
+
+.form-button:hover {
+    background-color: white;
+    color:#8481E2;
+    cursor: pointer;
+}
+
+.form-error {
+    color: white;
+}
+
+.navigateRegister {
+    text-align: center;
+}
+
+.navigateRegisterClick {
+    color: white;
+    text-decoration: underline;
+}
+
+.navigateRegisterClick:hover {
+    cursor: pointer;
+    color: #8481E2;
+}

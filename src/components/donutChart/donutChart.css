@@ -1,0 +1,24 @@
+.donutChart {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
+};
+
+.dataText {
+    display: flex;
+    flex-direction: column;
+}
+
+.dataText div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.dataText div h3 {
+    margin-left: 5px;
+}

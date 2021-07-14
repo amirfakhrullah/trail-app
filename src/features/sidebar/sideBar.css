@@ -1,0 +1,73 @@
+/* Left SideBar */
+.sideBarLeftFixed {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100;
+    /* width: 300px; */
+    width: 25vw;
+    height: 100vh;
+}
+
+.sideBarFeature {
+    width: 200px;
+}
+
+.sidebarContainer {
+    padding: 25px 40px;
+    margin-top: 5px;
+    border-radius: 0 10px 10px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.sidebarContainer:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.unselected {
+    text-decoration: none;
+    color: white;
+}
+
+.selected {
+    text-decoration: none;
+    color: white;
+}
+
+.selected .sidebarContainer {
+    background-color: #8481e2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* SideBar right */
+.sideBarRightFixed {
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    /* width: 300px; */
+    height: 100vh;
+}
+
+.sign-out-btn {
+    margin: 20px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    font-size: 1.1em;
+    background-color: #334746;
+    border: 1px solid white;
+}
+
+.sign-out-btn:hover {
+    background-color: white;
+    color:#334746;
+    cursor: pointer;
+}

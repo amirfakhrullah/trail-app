@@ -1,0 +1,34 @@
+.loadingPage {
+    display: flex;
+    justify-content: center;
+    padding-top: 80px;
+}
+
+.icon-container {
+    background-color: rgba(255, 255, 255, 0.6);
+    height: 180px;
+    width: 180px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    animation: scale 2s infinite;
+}
+
+.icon-container img {
+    height: 110px;
+    width: auto;
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

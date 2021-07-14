@@ -1,0 +1,32 @@
+.dashboardCard {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 25px;
+    padding: 15px 30px 0 30px;
+    margin-top: 20px;
+    width: 50vw;
+}
+
+.priority-navigator-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.bttn {
+    padding-bottom: 15px;
+}
+
+.activePriority {
+    border-bottom: 3px solid white;
+}
+
+.activePriority h4 {
+    font-weight: 600;
+}
+
+.bttn:hover > h4 {
+    font-weight: 600;
+    cursor: pointer;
+}
