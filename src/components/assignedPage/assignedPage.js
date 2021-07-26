@@ -42,7 +42,7 @@ export default function AssignedPage() {
         try {
             const email = window.localStorage.getItem('useremail');
             dispatch(ticketAction.getAssignedTickets(email));
-            history.push('/user/assigned');
+            history.push('/assigned');
         } catch (error) {
             console.log(error);
             window.location.href = '/login'

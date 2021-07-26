@@ -12,6 +12,8 @@ import * as authAction from '../../redux/actions/authAction';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
+import trail from '../login/t.png';
+
 
 const formSchema = yup.object({
     name: yup.string().required(),
@@ -43,6 +45,17 @@ export default function SignUp() {
     } else {
         content = (
             <div className="login-page">
+                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{
+                        padding: '20px',
+                        backgroundColor: 'rgba(255, 255, 255, 0.6)',
+                        borderRadius: '50%',
+                        marginRight: '20px'
+                        }}>
+                        <img src={trail} alt="logo" width="50px" />
+                    </div>
+                    <h1 style={{fontSize: "50px"}}>Trail App</h1>
+                </div>
                 { 
                     loading === 'fail' && <h2>Registration failed!</h2>
                 }

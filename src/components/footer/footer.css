@@ -1,0 +1,10 @@
+.footer {
+    padding: 20px 0px 10px 0px;
+    width: 100%;
+}
+
+p.copyright {
+    color: rgb(139, 139, 139);
+    text-align: center;
+    font-size: 0.9em;
+}

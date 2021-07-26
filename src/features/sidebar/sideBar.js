@@ -62,16 +62,16 @@ export default function SideBar() {
                         {navLinkSideBar('Dashboard')}
                     </NavLink>
 
-                    <NavLink to="/user/tickets" className="unselected" activeClassName="selected">
+                    <NavLink to="/organizations" className="unselected" activeClassName="selected">
+                        {navLinkSideBar(`Organizations`)}
+                    </NavLink>
+
+                    <NavLink to="/tickets" className="unselected" activeClassName="selected">
                         {navLinkSideBar(`My Tickets`)}
                     </NavLink>
 
-                    <NavLink to="/user/assigned" className="unselected" activeClassName="selected">
+                    <NavLink to="/assigned" className="unselected" activeClassName="selected">
                         {navLinkSideBar(`Assigned`)}
-                    </NavLink>
-
-                    <NavLink to="/organizations" className="unselected" activeClassName="selected">
-                        {navLinkSideBar(`Organizations`)}
                     </NavLink>
 
                 </div >

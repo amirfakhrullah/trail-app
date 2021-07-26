@@ -49,14 +49,25 @@ export default function OneTicketPage({ match }) {
                 <div className="oneTicketPage">
                     <div className="ticketCard" key={match.params._id}>
                         <div className="ticketCard__left">
-                            <h3>{ticket.title}</h3>
-                            <p style={{ marginTop: '5px' }}>Opened by {ticket.creator.email}</p>
-                            <p><span onClick={() => history.push(`/organizations/${ticket.organization._id}`)}>{ticket.organization.name}</span> | Status: {ticket.status} | {ticket.date.slice(0, 10)}</p>
+                            <h3 className="title-card">{ticket.title}</h3>
+                            <p style={{
+                                margin: '10px 20px 10px 10px',
+                                padding: '20px 10px',
+                                border: '1px solid white',
+                                borderRadius: '5px'
+                            }}>{ticket.description}</p>
+                            <p style={{ marginTop: '5px', color: 'rgb(209, 207, 207)' }}>Opened by {ticket.creator.email}</p>
+                            <p style={{ color: 'rgb(209, 207, 207)' }}><span onClick={() => history.push(`/organizations/${ticket.organization._id}`)}>{ticket.organization.name}</span> | Status: {ticket.status} | {ticket.date.slice(0, 10)}</p>
                         </div>
                         <div className="ticketCard__right">
                             <p>{ticket.priority && ticket.priority}</p>
                             <p className="priority-circle" style={colorPriority(ticket.priority)}></p>
                         </div>
+                    </div>
+                    <div>
+                        <button>Edit</button>
+                        <button>Mark as Done</button>
+                        <button>Delete</button>
                     </div>
                 </div>
             )

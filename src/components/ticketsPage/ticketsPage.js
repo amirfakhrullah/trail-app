@@ -42,7 +42,7 @@ export default function TicketsPage() {
         try {
             const email = window.localStorage.getItem('useremail');
             dispatch(ticketAction.getUserTickets(email));
-            history.push('/user/tickets');
+            history.push('/tickets');
         } catch (error) {
             console.log(error);
             window.location.href = '/login'

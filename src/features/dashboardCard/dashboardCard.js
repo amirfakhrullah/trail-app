@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './dashboardCard.css';
 
-
 import DonutChart from '../../components/donutChart/donutChart';
 import TicketCardList from '../ticketCardList/ticketCardList';
 import OrganizationList from '../organizationList/organizationList';

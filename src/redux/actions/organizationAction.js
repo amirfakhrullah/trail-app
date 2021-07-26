@@ -42,6 +42,8 @@ export const getOrganization = async (id) => {
                 payload: 'No Data Found!'
             });
         }
+
+        return resultJson;
     }
 }
 

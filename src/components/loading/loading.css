@@ -2,6 +2,10 @@
     display: flex;
     justify-content: center;
     padding-top: 80px;
+    height: 100vh;
+    width: 100vw;
+    z-index: 999;
+    background-color: #1e1e1e;
 }
 
 .icon-container {
