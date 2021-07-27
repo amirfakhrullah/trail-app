@@ -6,3 +6,36 @@
 .title-card:hover {
     text-decoration: none !important;
 }
+
+.edit-bttn {
+    width: 54vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-bttn > button {
+    padding: 15px 40px;
+    width: 250px;
+    margin: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: #8481E2;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.edit-bttn .delete {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.edit-bttn .delete:hover {
+    background-color: rgba(148, 148, 148, 0.4);
+}
+
+.edit-bttn .update:hover {
+    background-color: white;
+    color: #8481E2
+}

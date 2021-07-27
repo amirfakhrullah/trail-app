@@ -38,7 +38,7 @@ export default function OneTicketPage({ match }) {
 
     const { loadingTicket } = useSelector(state => state.ticket);
     const { ticket } = useSelector(state => state.ticket);
-    const { message } = useSelector(state =>  state.ticket);
+    const { message } = useSelector(state => state.ticket);
 
     var content;
     if (loadingTicket === 'loading' || loadingTicket === 'idle') {
@@ -48,26 +48,55 @@ export default function OneTicketPage({ match }) {
             ticket.creator && (
                 <div className="oneTicketPage">
                     <div className="ticketCard" key={match.params._id}>
-                        <div className="ticketCard__left">
-                            <h3 className="title-card">{ticket.title}</h3>
+                        <div className="ticketCard__left" style={{
+                            borderRight: '1px solid white'
+                        }}>
+                            <h3 className="title-card" style={{
+                                textDecoration: 'underline',
+                                marginRight: '10px'
+                            }}>{ticket.title}</h3>
                             <p style={{
-                                margin: '10px 20px 10px 10px',
+                                margin: '20px 20px 0px 10px',
+                                color: 'rgb(209, 207, 207)'
+                            }}>Description: </p>
+                            <p style={{
+                                margin: '5px 20px 10px 10px',
                                 padding: '20px 10px',
                                 border: '1px solid white',
                                 borderRadius: '5px'
                             }}>{ticket.description}</p>
-                            <p style={{ marginTop: '5px', color: 'rgb(209, 207, 207)' }}>Opened by {ticket.creator.email}</p>
-                            <p style={{ color: 'rgb(209, 207, 207)' }}><span onClick={() => history.push(`/organizations/${ticket.organization._id}`)}>{ticket.organization.name}</span> | Status: {ticket.status} | {ticket.date.slice(0, 10)}</p>
+                            <p style={{ margin: '10px 20px 10px 10px' }}><span style={{
+                                color: 'rgb(209, 207, 207)'
+                            }}>Opened by:</span> {ticket.creator.email}</p>
+                            <p style={{ margin: '10px 20px 10px 10px' }}><span style={{
+                                color: 'rgb(209, 207, 207)'
+                            }}>Assigned to:</span> {ticket.assigned.email}</p>
+                            <p style={{ margin: '10px 20px 10px 10px' }}><span style={{
+                                color: 'rgb(209, 207, 207)'
+                            }}>Status:</span> {ticket.status}</p>
+                            <p style={{
+                                margin: '10px 20px 10px 10px'
+                            }}><span onClick={() => history.push(`/organizations/${ticket.organization._id}`)}><span style={{
+                                color: 'rgb(209, 207, 207)'
+                            }}>Organization / Project:</span> {ticket.organization.name}</span></p>
+                            <p style={{ margin: '10px 20px 10px 10px' }}><span style={{
+                                color: 'rgb(209, 207, 207)'
+                            }}>Date created:</span> {ticket.date.slice(0, 10)}</p>
                         </div>
-                        <div className="ticketCard__right">
+                        <div className="ticketCard__right" style={{
+                            marginLeft: '10px'
+                        }}>
                             <p>{ticket.priority && ticket.priority}</p>
                             <p className="priority-circle" style={colorPriority(ticket.priority)}></p>
                         </div>
                     </div>
-                    <div>
-                        <button>Edit</button>
-                        <button>Mark as Done</button>
-                        <button>Delete</button>
+                    <div className="edit-bttn"> 
+                        <button className="delete">
+                            Delete
+                        </button>
+                        <button className="update">
+                            Update
+                        </button>
                     </div>
                 </div>
             )
@@ -78,7 +107,7 @@ export default function OneTicketPage({ match }) {
                 <h2>{message}</h2>
             </div>
         )
-    } 
+    }
 
     return <React.Fragment>{content}</React.Fragment>
 }

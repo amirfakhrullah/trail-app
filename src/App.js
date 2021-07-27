@@ -44,6 +44,7 @@ export default function App() {
             <OrganizationsPage />
           </Route>
           <Route exact path="/tickets/:id" component={OneTicketPage} />
+          <Route exact path="/assigned/:id" component={OneTicketPage} />
         </Router>
       </div>
       <Footer />
