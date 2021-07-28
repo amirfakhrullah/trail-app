@@ -14,6 +14,7 @@ import AssignedPage from './components/assignedPage/assignedPage';
 import OrganizationsPage from './components/organizationsPage/organizationsPage';
 import OneTicketPage from './components/onTicketPage/oneTicketPage';
 import Footer from './components/footer/footer';
+import OneOrganizationPage from './components/oneOrganizationPage/oneOrganizationPage';
 
 export default function App() {
   return (
@@ -45,6 +46,7 @@ export default function App() {
           </Route>
           <Route exact path="/tickets/:id" component={OneTicketPage} />
           <Route exact path="/assigned/:id" component={OneTicketPage} />
+          <Route exact path="/organizations/:id" component={OneOrganizationPage} />
         </Router>
       </div>
       <Footer />

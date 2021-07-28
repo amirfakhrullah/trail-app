@@ -1,0 +1,12 @@
+.oneOrganizationPage {
+    margin-top: 2vh;
+    margin-left: 25vw;
+}
+
+.activePriority {
+    border-bottom: 3px solid white;
+}
+
+.activePriority h4 {
+    font-weight: 600;
+}

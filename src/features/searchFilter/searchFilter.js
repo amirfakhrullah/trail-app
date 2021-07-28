@@ -22,7 +22,7 @@ export default function SearchFilter() {
 
     return (
         <div>
-            <Input className="input-material-ui" style={{color: 'white'}} type="text" id="myInput" onKeyUp={myFunction} placeholder="Search for ticket.." title="Type in a name" />
+            <Input className="input-material-ui" style={{color: 'white', marginTop: '20px'}} type="text" id="myInput" onKeyUp={myFunction} placeholder="Search for ticket.." title="Type in a name" />
         </div>
     )
 }

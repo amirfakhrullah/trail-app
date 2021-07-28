@@ -3,6 +3,7 @@ import { BACKEND_URL } from "./authAction";
 export const GET_USER_TICKETS = 'GET_USER_TICKETS';
 export const GET_TICKET_DATA = 'GET_TICKET_DATA';
 export const GET_ASSIGNED_TICKETS = 'GET_ASSIGNED_TICKETS';
+export const GET_TICKETS_BY_ORG = 'GET_TICKETS_BY_ORG';
 export const CREATE_TICKET = 'CREATE_TICKET';
 export const UPDATE_TICKET = 'UPDATE_TICKET';
 export const DELETE_TICKET = 'DELETE_TICKET';
@@ -42,6 +43,38 @@ export const getAssignedTickets = async (email) => {
         }
     }
 };
+
+export const getTicketsByOrganizationId = async (id) => {
+
+    return async dispatch => {
+
+        dispatch({
+            type: LOADING,
+        });
+
+        const result = await fetch(`${BACKEND_URL}/api/tickets/tickets-org/${id}`, {
+            headers: {
+                'auth-token': window.localStorage.getItem('token'),
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const resultJson = await result.json();
+
+        if (resultJson) {
+            dispatch({
+                type: GET_TICKETS_BY_ORG,
+                payload: resultJson
+            });
+        } else {
+            dispatch({
+                type: FAIL,
+                payload: 'No Data Found!'
+            });
+        }
+    }
+};
+
 
 export const getUserTickets = async (email) => {
 

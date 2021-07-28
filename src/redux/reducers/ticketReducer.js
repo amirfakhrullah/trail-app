@@ -1,9 +1,10 @@
 /* eslint-disable default-case */
-import { GET_USER_TICKETS, GET_TICKET_DATA, LOADING_TICKET, FAIL_TICKET, GET_ASSIGNED_TICKETS, CREATE_TICKET, UPDATE_TICKET, DELETE_TICKET, LOADING, FAIL } from '../actions/ticketAction';
+import { GET_USER_TICKETS, GET_TICKET_DATA, LOADING_TICKET, FAIL_TICKET, GET_ASSIGNED_TICKETS, GET_TICKETS_BY_ORG, CREATE_TICKET, UPDATE_TICKET, DELETE_TICKET, LOADING, FAIL } from '../actions/ticketAction';
 
 const initialState = {
     userTickets: [],
     assignedTickets: [],
+    organizationTickets: [],
     ticket: {},
     loading: 'idle',
     loadingTicket: 'idle',
@@ -30,6 +31,12 @@ export default function (state = initialState, action) {
                 ...state,
                 ticket: action.payload,
                 loadingTicket: 'success'
+            };
+        case GET_TICKETS_BY_ORG:
+            return {
+                ...state,
+                organizationTickets: action.payload,
+                loading: 'success'
             };
         case CREATE_TICKET:
             return {

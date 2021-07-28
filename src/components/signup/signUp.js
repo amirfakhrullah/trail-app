@@ -156,7 +156,7 @@ export default function SignUp() {
                                     className="form-input"
                                     type="password"
                                     name="confirmPassword"
-                                    placeholder='Repeat Password'
+                                    placeholder='Confirm Password'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.confirmPassword}

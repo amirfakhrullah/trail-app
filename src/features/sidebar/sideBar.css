@@ -71,3 +71,24 @@
     color:#334746;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 1120px) {
+
+    .sideBarFeature {
+        width: 100%;
+    }
+
+    .sideBarLeftFixed,
+    .sidebarContainer {
+        width: 50px;
+    }
+
+    .sidebarContainer {
+        padding: 25px;
+    }
+
+
+    .sidebarContainer h4 {
+        display: none;
+    }
+}

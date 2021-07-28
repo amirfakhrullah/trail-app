@@ -1,5 +1,5 @@
 .oneTicketPage {
-    margin-top: 8vh;
+    margin-top: 4vh;
     margin-left: 25vw;
 }
 
@@ -36,6 +36,14 @@
 }
 
 .edit-bttn .update:hover {
-    background-color: white;
-    color: #8481E2
+    background-color: #6260a0;
+}
+
+.backIcon {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.backIcon:hover {
+    color: #6260a0;
 }

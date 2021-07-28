@@ -6,6 +6,8 @@ import * as ticketAction from '../../redux/actions/ticketAction';
 import { useHistory } from 'react-router-dom';
 import Loading from '../loading/loading';
 
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+
 export default function OneTicketPage({ match }) {
 
     const dispatch = useDispatch();
@@ -47,12 +49,16 @@ export default function OneTicketPage({ match }) {
         content = (
             ticket.creator && (
                 <div className="oneTicketPage">
+                    <ArrowBackIcon onClick={() =>{
+                        history.goBack();
+                        history.goBack();
+                    }} className="backIcon" style={{ fontSize: '30px', color: '#8481E2'}} />
                     <div className="ticketCard" key={match.params._id}>
                         <div className="ticketCard__left" style={{
                             borderRight: '1px solid white'
                         }}>
                             <h3 className="title-card" style={{
-                                textDecoration: 'underline',
+                                fontWeight: 'bold',
                                 marginRight: '10px'
                             }}>{ticket.title}</h3>
                             <p style={{
@@ -84,7 +90,7 @@ export default function OneTicketPage({ match }) {
                             }}>Date created:</span> {ticket.date.slice(0, 10)}</p>
                         </div>
                         <div className="ticketCard__right" style={{
-                            marginLeft: '10px'
+                            marginLeft: '2vw'
                         }}>
                             <p>{ticket.priority && ticket.priority}</p>
                             <p className="priority-circle" style={colorPriority(ticket.priority)}></p>
