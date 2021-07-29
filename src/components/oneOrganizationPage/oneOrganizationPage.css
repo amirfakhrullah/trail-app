@@ -1,12 +1,15 @@
 .oneOrganizationPage {
-    margin-top: 2vh;
+    margin-top: 4vh;
     margin-left: 25vw;
 }
 
-.activePriority {
-    border-bottom: 3px solid white;
+.dropdown-menu {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
 }
 
-.activePriority h4 {
-    font-weight: 600;
+.dropdown-menu:hover {
+    background-color: #8481E2;
 }

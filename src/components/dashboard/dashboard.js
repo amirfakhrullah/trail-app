@@ -3,6 +3,7 @@ import './dashboard.css';
 
 // import Loading from '../loading/loading';
 import DashboardCard from '../../features/dashboardCard/dashboardCard';
+import Loading from '../loading/loading';
 
 import { useHistory } from 'react-router-dom';
 
@@ -62,13 +63,20 @@ export default function Dashboard() {
     const { userTickets } = useSelector(state => state.ticket);
     const { userData } = useSelector(state => state.user);
 
-    return (
-        <div className="dashboardPage">
-            <div>
-                <h4>Hello, {name} !</h4>
-                <h1 style={{ marginBottom: '0px' }}>You've got {assignedTickets.result ? <span>{assignedTickets.result.filter(ticks => ticks.priority !== "Done").length} tasks</span> : <span>0 task</span>} remaining.</h1>
+    var content;
+    if (!assignedTickets.result) {
+        content = <Loading />
+    } else {
+        content = (
+            <div className="dashboardPage">
+                <div>
+                    <h4>Hello, {name} !</h4>
+                    <h1 style={{ marginBottom: '0px' }}>You've got {assignedTickets.result ? <span>{assignedTickets.result.filter(ticks => ticks.priority !== "Done").length} tasks</span> : <span>0 task</span>} remaining.</h1>
+                </div>
+                <DashboardCard assignedTickets={assignedTickets} userTickets={userTickets} userData={userData} />
             </div>
-            <DashboardCard assignedTickets={assignedTickets} userTickets={userTickets} userData={userData} />
-        </div>
-    )
+        )
+    }
+
+    return <React.Fragment>{content}</React.Fragment>
 }

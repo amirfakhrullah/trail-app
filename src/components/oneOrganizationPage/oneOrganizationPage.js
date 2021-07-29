@@ -12,6 +12,9 @@ import * as ticketAction from '../../redux/actions/ticketAction';
 import * as organizationAction from '../../redux/actions/organizationAction';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Dropdown from 'react-bootstrap/Dropdown';
+import SettingsIcon from '@material-ui/icons/Settings';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 export default function OneOrganizationPage({ match }) {
 
@@ -76,9 +79,47 @@ export default function OneOrganizationPage({ match }) {
         allContent = (
             <div className='oneOrganizationPage'>
                 <div>
-                    <h1>{organizationData.name}</h1>
-                    <h3>Admin : {organizationData.admin.email} | Members : {organizationData.members.length}</h3>
-                    <h4>Current Tasks: <b>{organizationTickets.result ? <span>{organizationTickets.result.filter(ticks => ticks.priority !== "Done").length} tasks</span> : <span>0 task</span>}</b></h4>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        marginBottom: '10px'
+                    }}>
+                        <h1 style={{
+                            margin: '0px'
+                        }}>{organizationData.name}</h1>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="success" id="dropdown-basic" style={{
+                                backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                                padding: '2px',
+                                borderRadius: '5px',
+                                cursor: 'pointer',
+                                marginLeft: '10px'
+                            }}>
+                                <SettingsIcon style={{ color: 'white' }} />
+                                <ArrowDropDownIcon style={{ color: 'white' }} />
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu style={{
+                                backgroundColor: 'grey',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center'
+                            }}>
+                                <Dropdown.Item className="dropdown-menu">Add New Member</Dropdown.Item>
+                                <Dropdown.Item className="dropdown-menu">Edit Organization's Info</Dropdown.Item>
+                                <Dropdown.Item className="dropdown-menu">Change Organization's Password</Dropdown.Item>
+                                <Dropdown.Item className="dropdown-menu">Delete Organization</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+                    <p>{organizationData.description !== '' && organizationData.description}</p>
+                    <p style={{ color: 'rgb(209, 207, 207)' }}>Admin : <span style={{color: 'white'}}>{organizationData.admin.email}</span> | Members : <span style={{color: 'white'}}>{organizationData.members.length}</span></p>
+                    <p style={{ color: 'rgb(209, 207, 207)' }}>Current Tasks: <b style={{color: 'white'}}>{organizationTickets.result ? <span>{organizationTickets.result.filter(ticks => ticks.priority !== "Done").length} tasks</span> : <span>0 task</span>}</b></p>
+                </div>
+                <div className="edit-bttn" style={{ justifyContent: 'flex-end' }}>
+                    <button className="update" style={{ margin: '2px' }} onClick={() => window.location.href=`/organizations/${match.params.id}/create-ticket`}>
+                        Open an issue / ticket
+                    </button>
                 </div>
                 <div className='dashboardCard'>
                     <div className="priority-navigator-container" id="myDIV">
