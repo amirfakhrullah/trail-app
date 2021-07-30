@@ -13,3 +13,39 @@
 .dropdown-menu:hover {
     background-color: #8481E2;
 }
+
+.edit-bttnOrg {
+    width: 54vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-bttnOrg button {
+    padding: 15px 20px;
+    margin-left: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: #8481E2;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.edit-bttnOrg .add-ticket:hover {
+    background-color: #6260a0;
+}
+
+.add-member {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px !important;
+    border-radius: 50% !important;
+    background-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.add-member:hover {
+    background-color: rgba(148, 148, 148, 0.4) !important;
+}

@@ -1,16 +1,25 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { NavLink, useHistory } from 'react-router-dom';
 import './sideBar.css';
 
 import Logo from '../logo/logo';
+
+import { decodeToken } from '../../components/dashboard/dashboard';
 
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 import GroupIcon from '@material-ui/icons/Group';
 
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import PersonIcon from '@material-ui/icons/Person';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 export default function SideBar() {
+
+    const history = useHistory();
+
+    const [username, setUsername] = useState('');
 
     const Logout = () => {
         try {
@@ -23,6 +32,17 @@ export default function SideBar() {
             console.log(error)
         }
     }
+
+    useEffect(() => {
+        const token = window.localStorage.getItem('token')
+        if (!token) {
+            history.push('/login');
+            return;
+        };
+
+        const decoded = decodeToken(token);
+        setUsername(decoded.name);
+    }, [history])
 
     const navLinkSideBar = text => {
 
@@ -77,7 +97,42 @@ export default function SideBar() {
                 </div >
             </div>
             <div className="sideBarRightFixed">
-                <button className="sign-out-btn" onClick={() => Logout()}>Sign Out</button>
+                <Dropdown>
+                    <Dropdown.Toggle variant="success" id="dropdown-basic" style={{
+                        backgroundColor: '#171717',
+                        padding: '10px 15px',
+                        borderRadius: '5px',
+                        border: '1px solid white',
+                        cursor: 'pointer',
+                        margin: '20px'
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                        }}>
+                            <PersonIcon style={{ color: 'white' }} />
+                            <p className="userNav" style={{ 
+                                color: 'white',
+                                marginLeft: '10px',
+                                marginRight: '10px'
+                            }}>{username}</p>
+                            <ArrowDropDownIcon style={{ color: 'white' }} />
+                        </div>
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu style={{
+                        backgroundColor: '#171717',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center'
+                    }}>
+                        <Dropdown.Item className="dropdown-menu-user">Edit Info</Dropdown.Item>
+                        <Dropdown.Item className="dropdown-menu-user">Create An Organization</Dropdown.Item>
+                        <Dropdown.Item className="dropdown-menu-user">Change Password</Dropdown.Item>
+                        <Dropdown.Item className="dropdown-menu-user" onClick={() => Logout()}>Logout</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
             </div>
         </>
     )

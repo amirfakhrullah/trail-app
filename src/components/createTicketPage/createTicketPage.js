@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './createTicketPage.css';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { useHistory } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
 import * as organizationAction from '../../redux/actions/organizationAction';
@@ -128,7 +127,7 @@ export default function CreateTicketPage({ match }) {
                                         margin: '10px',
                                         backgroundColor: 'rgba(255, 255, 255, 0.6)'
                                     }} name="assigned">
-                                        <option value=''>None</option>
+                                        <option value=''>select..</option>
                                         {
                                             members && members.map(member => (
                                                 <option key={member._id} value={member.email}>{member.email}</option>

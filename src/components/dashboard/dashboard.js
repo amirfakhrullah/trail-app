@@ -16,7 +16,7 @@ var Buffer = require('buffer/').Buffer;
 
 
 // Code for decoding JWT token without library
-const decodeToken = token => {
+export const decodeToken = token => {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const buff = new Buffer(base64, 'base64');

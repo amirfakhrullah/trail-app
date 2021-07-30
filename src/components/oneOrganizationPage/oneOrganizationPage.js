@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Dropdown from 'react-bootstrap/Dropdown';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 export default function OneOrganizationPage({ match }) {
 
@@ -90,7 +91,7 @@ export default function OneOrganizationPage({ match }) {
                         <Dropdown>
                             <Dropdown.Toggle variant="success" id="dropdown-basic" style={{
                                 backgroundColor: 'rgba(255, 255, 255, 0.4)',
-                                padding: '6px 2px 2px 2px',
+                                padding: '6px 5px 2px 5px',
                                 borderRadius: '5px',
                                 border: 'none',
                                 cursor: 'pointer',
@@ -106,7 +107,6 @@ export default function OneOrganizationPage({ match }) {
                                 flexDirection: 'column',
                                 justifyContent: 'center'
                             }}>
-                                <Dropdown.Item className="dropdown-menu">Add New Member</Dropdown.Item>
                                 <Dropdown.Item className="dropdown-menu">Edit Organization's Info</Dropdown.Item>
                                 <Dropdown.Item className="dropdown-menu">Change Organization's Password</Dropdown.Item>
                                 <Dropdown.Item className="dropdown-menu">Delete Organization</Dropdown.Item>
@@ -117,8 +117,12 @@ export default function OneOrganizationPage({ match }) {
                     <p style={{ color: 'rgb(209, 207, 207)' }}>Admin : <span style={{color: 'white'}}>{organizationData.admin.email}</span> | Members : <span style={{color: 'white'}}>{organizationData.members.length}</span></p>
                     <p style={{ color: 'rgb(209, 207, 207)' }}>Current Tasks: <b style={{color: 'white'}}>{organizationTickets.result ? <span>{organizationTickets.result.filter(ticks => ticks.priority !== "Done").length} tasks</span> : <span>0 task</span>}</b></p>
                 </div>
-                <div className="edit-bttn" style={{ justifyContent: 'flex-end' }}>
-                    <button className="update" style={{ margin: '2px' }} onClick={() => window.location.href=`/organizations/${match.params.id}/create-ticket`}>
+                <div className="edit-bttnOrg" style={{ justifyContent: 'flex-end' }}>
+                    <button className="add-member">
+                        <PersonAddIcon style={{color: 'white', fontSize: '20px'}} />
+                    </button>
+
+                    <button className="add-ticket" onClick={() => window.location.href=`/organizations/${match.params.id}/create-ticket`}>
                         Open an issue / ticket
                     </button>
                 </div>
