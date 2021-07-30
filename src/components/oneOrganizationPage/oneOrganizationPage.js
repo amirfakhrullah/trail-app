@@ -90,8 +90,9 @@ export default function OneOrganizationPage({ match }) {
                         <Dropdown>
                             <Dropdown.Toggle variant="success" id="dropdown-basic" style={{
                                 backgroundColor: 'rgba(255, 255, 255, 0.4)',
-                                padding: '2px',
+                                padding: '6px 2px 2px 2px',
                                 borderRadius: '5px',
+                                border: 'none',
                                 cursor: 'pointer',
                                 marginLeft: '10px'
                             }}>

@@ -36,7 +36,7 @@ export default function TicketCardList(props) {
                         <div className="ticketCard__left">
                             <h3 onClick={() => window.location.href=`/tickets/${ticks._id}`}>{ticks.title}</h3>
                             <p style={{marginTop: '5px',  color: 'rgb(209, 207, 207)'}}>Opened by {ticks.creator.email}</p>
-                            <p style={{  color: 'rgb(209, 207, 207)' }}><span onClick={() => history.push(`/organizations/${ticks.organization._id}`)}>{ticks.organization.name}</span> | Status: {ticks.status} | {ticks.date.slice(0, 10)}</p>
+                            <p style={{  color: 'rgb(209, 207, 207)' }}><span className="spanOrg" onClick={() => history.push(`/organizations/${ticks.organization._id}`)}>{ticks.organization.name}</span> | Status: {ticks.status} | {ticks.date.slice(0, 10)}</p>
                         </div>
                         <div className="ticketCard__right">
                             <p>{ticks.priority}</p>

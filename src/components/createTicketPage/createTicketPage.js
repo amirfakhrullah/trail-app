@@ -37,7 +37,7 @@ export default function CreateTicketPage({ match }) {
 
     return (
         <div className="createTicketPage">
-            <ArrowBackIcon onClick={() => history.goBack()} className="backIcon" style={{ fontSize: '30px', color: '#8481E2' }} />
+            <ArrowBackIcon onClick={() => window.location.href=`/organizations/${match.params.id}`} className="backIcon" style={{ fontSize: '30px', color: '#8481E2' }} />
             <h1 style={{ margin: '0px 0px 20px 20px' }}>Open an issue / ticket</h1>
             <div className="createTicketPage__container">
                 <Formik

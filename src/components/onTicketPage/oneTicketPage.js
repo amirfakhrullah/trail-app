@@ -8,7 +8,8 @@ import Loading from '../loading/loading';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
-export default function OneTicketPage({ match }) {
+export default function OneTicketPage({ match }, props) {
+    console.log(props);
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -82,9 +83,9 @@ export default function OneTicketPage({ match }) {
                             }}>Status:</span> {ticket.status}</p>
                             <p style={{
                                 margin: '10px 20px 10px 10px'
-                            }}><span onClick={() => history.push(`/organizations/${ticket.organization._id}`)}><span style={{
+                            }}><span><span style={{
                                 color: 'rgb(209, 207, 207)'
-                            }}>Organization / Project:</span> {ticket.organization.name}</span></p>
+                            }}>Organization / Project: </span><span className="spanOrg" onClick={() => history.push(`/organizations/${ticket.organization._id}`)}>{ticket.organization.name}</span></span></p>
                             <p style={{ margin: '10px 20px 10px 10px' }}><span style={{
                                 color: 'rgb(209, 207, 207)'
                             }}>Date created:</span> {ticket.date.slice(0, 10)}</p>

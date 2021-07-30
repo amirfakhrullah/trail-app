@@ -36,7 +36,7 @@ export default function App() {
           <Route exact path="/">
             <Dashboard />
           </Route>
-          <Route exact path="/tickets">
+          <Route exact path="/my-tickets">
             <TicketsPage />
           </Route>
           <Route exact path="/assigned">
@@ -46,7 +46,6 @@ export default function App() {
             <OrganizationsPage />
           </Route>
           <Route exact path="/tickets/:id" component={OneTicketPage} />
-          <Route exact path="/assigned/:id" component={OneTicketPage} />
           <Route exact path="/organizations/:id" component={OneOrganizationPage} />
           <Route exact path="/organizations/:id/create-ticket" component={CreateTicketPage} />
         </Router>

@@ -18,7 +18,7 @@
 }
 
 .ticketCard__left h3:hover,
-.ticketCard__left span:hover {
+.ticketCard__left .spanOrg:hover {
     cursor: pointer;
     text-decoration: underline;
 }

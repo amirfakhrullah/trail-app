@@ -7,6 +7,7 @@ import * as userAction from '../../redux/actions/userAction';
 import { useHistory } from 'react-router-dom';
 
 import OrganizationList from '../../features/organizationList/organizationList';
+import Loading from '../loading/loading';
 
 export default function OrganizationsPage() {
 
@@ -32,10 +33,17 @@ export default function OrganizationsPage() {
 
     const { userData } = useSelector(state => state.user);
 
-    return (
-        <div className="organizationsPage">
-            <h1 style={{marginBottom: '20px'}}>My Organizations / Projects</h1>
-            <OrganizationList organizations={userData.organizations} />
-        </div>
-    )
+    var content;
+    if (!userData.organizations) {
+        content = <Loading />
+    } else {
+        content = (
+            <div className="organizationsPage">
+                <h1 style={{ marginBottom: '20px' }}>My Organizations / Projects</h1>
+                <OrganizationList organizations={userData.organizations} />
+            </div>
+        )
+    }
+
+    return <React.Fragment>{content}</React.Fragment>
 }

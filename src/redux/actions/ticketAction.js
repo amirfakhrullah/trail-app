@@ -124,7 +124,6 @@ export const getTicketById = async (id) => {
         });
 
         const resultJson = await result.json();
-        console.log(resultJson)
 
         if (resultJson) {
             dispatch({

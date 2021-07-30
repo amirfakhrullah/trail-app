@@ -66,7 +66,7 @@ export default function SideBar() {
                         {navLinkSideBar(`Organizations`)}
                     </NavLink>
 
-                    <NavLink to="/tickets" className="unselected" activeClassName="selected">
+                    <NavLink to="/my-tickets" className="unselected" activeClassName="selected">
                         {navLinkSideBar(`My Tickets`)}
                     </NavLink>
 
