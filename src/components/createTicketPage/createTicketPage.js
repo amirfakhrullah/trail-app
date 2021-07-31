@@ -43,7 +43,6 @@ export default function CreateTicketPage({ match }) {
     const loadingTicket = useSelector(state => state.ticket.loading);
     const { organizationData } = useSelector(state => state.organization);
     const { message } = useSelector(state => state.ticket);
-    console.log(message);
 
     var content;
     if ((loading === 'idle' || loading === 'loading') && (loadingTicket === 'idle' || loadingTicket === 'loading')) {

@@ -33,3 +33,14 @@
     border-radius: 50%;
     margin-left: 5px;
 }
+
+.status-container {
+    margin: 2px 5px;
+    width: 70px;
+    border-radius: 20px;
+}
+
+.status-container p {
+    text-align: center;
+    font-size: 14px;
+}

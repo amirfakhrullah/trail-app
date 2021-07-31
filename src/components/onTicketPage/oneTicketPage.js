@@ -29,6 +29,26 @@ export default function OneTicketPage({ match }, props) {
         }
     }
 
+    const colorStatus = status => {
+        if (status === 'Assigned') {
+            return { backgroundColor: '#77cad9' }
+        } else if (status === 'Ongoing') {
+            return { backgroundColor: '#2c5f88' }
+        } else if (status === 'Stuck') {
+            return { backgroundColor: '#f87969' }
+        } else if (status === 'Done') {
+            return { backgroundColor: '#ced645' }
+        }
+    }
+
+    const colorFontStatus = status => {
+        if (status === 'Assigned' || status === 'Done') {
+            return { color: 'black' }
+        } else {
+            return { color: 'white' }
+        }
+    }
+
     useEffect(() => {
         const token = window.localStorage.getItem('token')
         if (!token) {
@@ -63,14 +83,17 @@ export default function OneTicketPage({ match }, props) {
                                 display: 'flex',
                                 flexDirection: 'row'
                             }}>
-                                <AssignmentIcon />
-                                <h3 className="title-card" style={{
+                                <AssignmentIcon style={{marginTop: '2px'}} />
+                                <h2 className="title-card" style={{
                                     fontWeight: 'bold',
                                     margin: '0px 10px'
-                                }}>{ticket.title}</h3>
+                                }}>{ticket.title}</h2>
                             </div>
+                            <p style={{ margin: '20px 20px 10px 10px' }}><span style={{
+                                color: 'rgb(209, 207, 207)'
+                            }}>Issue Reference:</span> {ticket.reference ? ticket.reference : 'None'}</p>
                             <p style={{
-                                margin: '20px 20px 0px 10px',
+                                margin: '10px 20px 0px 10px',
                                 color: 'rgb(209, 207, 207)'
                             }}>Description: </p>
                             <p style={{
@@ -85,9 +108,17 @@ export default function OneTicketPage({ match }, props) {
                             <p style={{ margin: '10px 20px 10px 10px' }}><span style={{
                                 color: 'rgb(209, 207, 207)'
                             }}>Assigned to:</span> {ticket.assigned.email}</p>
-                            <p style={{ margin: '10px 20px 10px 10px' }}><span style={{
-                                color: 'rgb(209, 207, 207)'
-                            }}>Status:</span> {ticket.status}</p>
+                            <div style={{
+                                display: 'flex',
+                                alignItems: 'center'
+                            }}>
+                                <p style={{ margin: '10px 20px 10px 10px' }}><span style={{
+                                    color: 'rgb(209, 207, 207)'
+                                }}>Status:</span></p>
+                                <div className="status-container" style={colorStatus(ticket.status)}>
+                                    <p style={colorFontStatus(ticket.status)}>{ticket.status}</p>
+                                </div>
+                            </div>
                             <p style={{
                                 margin: '10px 20px 10px 10px'
                             }}><span><span style={{
@@ -98,7 +129,7 @@ export default function OneTicketPage({ match }, props) {
                             }}>Date created:</span> {ticket.date.slice(0, 10)}</p>
                         </div>
                         <div className="ticketCard__right" style={{
-                            marginLeft: '2vw'
+                            marginLeft: '1vw'
                         }}>
                             <p>{ticket.priority && ticket.priority}</p>
                             <p className="priority-circle" style={colorPriority(ticket.priority)}></p>
