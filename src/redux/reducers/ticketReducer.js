@@ -8,7 +8,7 @@ const initialState = {
     ticket: {},
     loading: 'idle',
     loadingTicket: 'idle',
-    message: {}
+    message: ''
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -41,7 +41,7 @@ export default function (state = initialState, action) {
         case CREATE_TICKET:
             return {
                 ...state,
-                message: action.payload,
+                message: action.payload.message,
                 loading: 'success'
             };
         case LOADING:

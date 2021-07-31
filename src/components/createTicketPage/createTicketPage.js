@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './createTicketPage.css';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import { useDispatch, useSelector } from 'react-redux';
 import * as organizationAction from '../../redux/actions/organizationAction';
+import * as ticketAction from '../../redux/actions/ticketAction';
 
 import Loading from '../loading/loading';
 
 import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
+import { useHistory } from 'react-router-dom';
 
 const formSchema = yup.object({
     title: yup.string().required('Issue title is required'),
@@ -19,8 +21,7 @@ const formSchema = yup.object({
 export default function CreateTicketPage({ match }) {
 
     const dispatch = useDispatch();
-
-    const [members, setMembers] = useState([]);
+    const history = useHistory();
 
     const findMemberIdByEmail = (members, email) => {
         const member = members.find(mem => mem.email === email);
@@ -29,22 +30,35 @@ export default function CreateTicketPage({ match }) {
     }
 
     useEffect(() => {
-        dispatch(organizationAction.getOrganization(match.params.id))
-            .then(result => {
-                setMembers(result.members);
-            })
-    }, [dispatch, match.params.id]);
+        const token = window.localStorage.getItem('token')
+        if (!token) {
+            history.push('/login');
+            return;
+        };
+
+        dispatch(organizationAction.getOrganization(match.params.id));
+    }, [dispatch, match.params.id, history]);
 
     const { loading } = useSelector(state => state.organization);
+    const loadingTicket = useSelector(state => state.ticket.loading);
+    const { organizationData } = useSelector(state => state.organization);
+    const { message } = useSelector(state => state.ticket);
+    console.log(message);
 
     var content;
-    if (loading === 'idle' || loading === 'loading') {
+    if ((loading === 'idle' || loading === 'loading') && (loadingTicket === 'idle' || loadingTicket === 'loading')) {
         content = <Loading />
     } else {
         content = (
             <div className="createTicketPage">
                 <ArrowBackIcon onClick={() => window.location.href = `/organizations/${match.params.id}`} className="backIcon" style={{ fontSize: '30px', color: '#8481E2' }} />
                 <h1 style={{ margin: '0px 0px 20px 20px' }}>Open an issue / ticket</h1>
+                {
+                    message && <h4 style={{
+                        textAlign: 'center',
+                        marginBottom: '20px'
+                    }}>{message}</h4>
+                }
                 <div className="createTicketPage__container">
                     <Formik
                         initialValues={{
@@ -57,21 +71,19 @@ export default function CreateTicketPage({ match }) {
                         }}
                         validationSchema={formSchema}
                         onSubmit={(values) => {
-                            console.log({
+                            dispatch(ticketAction.postTicket({
                                 title: values.title,
                                 reference: values.reference,
                                 description: values.description,
-                                creator: {
-                                    email: localStorage.getItem('useremail'),
-                                    _id: localStorage.getItem('userid')
-                                },
-                                assigned: {
-                                    email: values.assigned,
-                                    _id: findMemberIdByEmail(members, values.assigned)
-                                },
+                                creatorId: localStorage.getItem('userid'),
+                                creatorEmail: localStorage.getItem('useremail'),
+                                assignedId: findMemberIdByEmail(organizationData.members, values.assigned),
+                                assignedEmail: values.assigned,
                                 status: values.status,
-                                priority: values.priority
-                            });
+                                priority: values.priority,
+                                organizationId: match.params.id,
+                                organizationName: organizationData.name
+                            }))
                         }}
                     >
                         {({
@@ -129,7 +141,7 @@ export default function CreateTicketPage({ match }) {
                                     }} name="assigned">
                                         <option value=''>select..</option>
                                         {
-                                            members && members.map(member => (
+                                            organizationData.members && organizationData.members.map(member => (
                                                 <option key={member._id} value={member.email}>{member.email}</option>
                                             ))
                                         }
@@ -143,8 +155,8 @@ export default function CreateTicketPage({ match }) {
                                         justifyContent: 'space-between'
                                     }}>
                                         <label>
-                                            <Field type="radio" name="status" value="Not yet started" />
-                                            Not yet started
+                                            <Field type="radio" name="status" value="Assigned" />
+                                            Assigned
                                         </label>
                                         <label>
                                             <Field type="radio" name="status" value="Ongoing" />

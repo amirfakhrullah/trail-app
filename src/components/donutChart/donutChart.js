@@ -2,7 +2,6 @@ import React from 'react';
 import './donutChart.css';
 
 import { ChartDonut } from '@patternfly/react-charts';
-import { BorderLeft } from '@material-ui/icons';
 
 export default function DonutChart(props) {
 

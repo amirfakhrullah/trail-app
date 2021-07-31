@@ -9,6 +9,8 @@ import { useHistory } from 'react-router-dom';
 import OrganizationList from '../../features/organizationList/organizationList';
 import Loading from '../loading/loading';
 
+import AddIcon from '@material-ui/icons/Add';
+
 export default function OrganizationsPage() {
 
     const history = useHistory();
@@ -39,7 +41,16 @@ export default function OrganizationsPage() {
     } else {
         content = (
             <div className="organizationsPage">
-                <h1 style={{ marginBottom: '20px' }}>My Organizations / Projects</h1>
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginBottom: '20px'
+                }}>
+                    <h1>My Organizations / Projects</h1>
+                    <div className="addOrgBttn">
+                        <AddIcon style={{ color: 'white', fontSize: '20px' }} />
+                    </div>
+                </div>
                 <OrganizationList organizations={userData.organizations} />
             </div>
         )

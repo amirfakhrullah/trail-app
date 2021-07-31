@@ -2,3 +2,18 @@
     margin-top: 8vh;
     margin-left: 25vw;
 }
+
+.addOrgBttn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    margin: 0px 0px 10px 10px;
+    cursor: pointer;
+}
+
+.addOrgBttn:hover {
+    background-color: rgba(148, 148, 148, 0.4);
+}

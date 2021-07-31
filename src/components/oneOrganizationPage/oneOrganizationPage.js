@@ -122,7 +122,7 @@ export default function OneOrganizationPage({ match }) {
                         <PersonAddIcon style={{color: 'white', fontSize: '20px'}} />
                     </button>
 
-                    <button className="add-ticket" onClick={() => window.location.href=`/organizations/${match.params.id}/create-ticket`}>
+                    <button className="add-ticket" onClick={() => window.location.href=`/organizations/create-ticket/${match.params.id}`}>
                         Open an issue / ticket
                     </button>
                 </div>

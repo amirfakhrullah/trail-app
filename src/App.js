@@ -47,7 +47,7 @@ export default function App() {
           </Route>
           <Route exact path="/tickets/:id" component={OneTicketPage} />
           <Route exact path="/organizations/:id" component={OneOrganizationPage} />
-          <Route exact path="/organizations/:id/create-ticket" component={CreateTicketPage} />
+          <Route exact path="/organizations/create-ticket/:id" component={CreateTicketPage} />
         </Router>
       </div>
       <Footer />

@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import Loading from '../loading/loading';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 export default function OneTicketPage({ match }, props) {
     console.log(props);
@@ -50,18 +51,24 @@ export default function OneTicketPage({ match }, props) {
         content = (
             ticket.creator && (
                 <div className="oneTicketPage">
-                    <ArrowBackIcon onClick={() =>{
+                    <ArrowBackIcon onClick={() => {
                         history.goBack();
                         history.goBack();
-                    }} className="backIcon" style={{ fontSize: '30px', color: '#8481E2'}} />
+                    }} className="backIcon" style={{ fontSize: '30px', color: '#8481E2' }} />
                     <div className="ticketCard" key={match.params._id}>
                         <div className="ticketCard__left" style={{
                             borderRight: '1px solid white'
                         }}>
-                            <h3 className="title-card" style={{
-                                fontWeight: 'bold',
-                                marginRight: '10px'
-                            }}>{ticket.title}</h3>
+                            <div style={{
+                                display: 'flex',
+                                flexDirection: 'row'
+                            }}>
+                                <AssignmentIcon />
+                                <h3 className="title-card" style={{
+                                    fontWeight: 'bold',
+                                    margin: '0px 10px'
+                                }}>{ticket.title}</h3>
+                            </div>
                             <p style={{
                                 margin: '20px 20px 0px 10px',
                                 color: 'rgb(209, 207, 207)'
@@ -97,7 +104,7 @@ export default function OneTicketPage({ match }, props) {
                             <p className="priority-circle" style={colorPriority(ticket.priority)}></p>
                         </div>
                     </div>
-                    <div className="edit-bttn"> 
+                    <div className="edit-bttn">
                         <button className="delete">
                             Delete
                         </button>
