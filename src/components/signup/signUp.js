@@ -48,6 +48,8 @@ export default function SignUp() {
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                     <div style={{
                         padding: '20px',
+                        width: '50px',
+                        height: '50px',
                         backgroundColor: 'rgba(255, 255, 255, 0.6)',
                         borderRadius: '50%',
                         marginRight: '20px'
@@ -63,7 +65,9 @@ export default function SignUp() {
                     errorMessage && <h3>{errorMessage.message}</h3>
                 }
                 <div className="login-container">
-                    <h1 style={{marginBottom: '5px'}}>Register Now.</h1>
+                    <h1 style={{marginBottom: '10px'}}>Register Now.</h1>
+                    <h4>Welcome to Trail App!</h4>
+                    <h4 style={{marginBottom: '10px'}}>Create an account to get started.</h4>
                     <Formik
                         initialValues={{
                             name: '',

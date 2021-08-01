@@ -12,7 +12,6 @@ import * as authAction from '../../redux/actions/authAction';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 
-import Logo from '../../features/logo/logo';
 import trail from './t.png';
 
 const formSchema = yup.object({
@@ -35,6 +34,8 @@ export default function Login() {
                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
                     <div style={{
                         padding: '20px',
+                        width: '50px',
+                        height: '50px',
                         backgroundColor: 'rgba(255, 255, 255, 0.6)',
                         borderRadius: '50%',
                         marginRight: '20px'
@@ -115,7 +116,11 @@ export default function Login() {
                                 />
                                 <p className="form-error">{errors.password && touched.password && errors.password}</p>
 
-                                <button className="form-button" type="submit" disabled={isSubmitting}>
+                                <p className="forgot-password" onClick={() => console.log('Forgot Password')}>Forgot Password?</p>
+
+                                <button className="form-button" style={{
+                                    marginTop: '0px'
+                                }} type="submit" disabled={isSubmitting}>
                                     Sign in
                                 </button>
                             </form>

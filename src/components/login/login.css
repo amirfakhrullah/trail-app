@@ -61,10 +61,20 @@
 
 .navigateRegisterClick {
     color: white;
-    text-decoration: underline;
 }
 
 .navigateRegisterClick:hover {
     cursor: pointer;
-    color: #8481E2;
+    text-decoration: underline;
+}
+
+.forgot-password {
+    text-align: right;
+    margin: 10px 0px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
 }
