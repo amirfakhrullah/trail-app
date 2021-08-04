@@ -6,7 +6,7 @@ export const DELETE_USER = 'DELETE_USER';
 export const LOADING = 'LOADING';
 export const FAIL = 'FAIL';
 
-export const getUserData = async (id) => {
+export const getUserData = id => {
 
     return async dispatch => {
 

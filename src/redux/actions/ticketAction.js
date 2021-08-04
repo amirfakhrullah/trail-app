@@ -44,7 +44,7 @@ export const getAssignedTickets = async (email) => {
     }
 };
 
-export const getTicketsByOrganizationId = async (id) => {
+export const getTicketsByOrganizationId = id => {
 
     return async dispatch => {
 
@@ -76,7 +76,7 @@ export const getTicketsByOrganizationId = async (id) => {
 };
 
 
-export const getUserTickets = async (email) => {
+export const getUserTickets = email => {
 
     return async dispatch => {
 
@@ -107,7 +107,7 @@ export const getUserTickets = async (email) => {
     }
 };
 
-export const getTicketById = async (id) => {
+export const getTicketById = id => {
 
     return async dispatch => {
 
@@ -137,10 +137,12 @@ export const getTicketById = async (id) => {
             });
         }
 
+        return resultJson;
+
     }
 };
 
-export const postTicket = async (data) => {
+export const postTicket = data => {
     const { title, reference, description, creatorId, creatorEmail, assignedId, assignedEmail, status, priority, organizationId, organizationName } = data;
 
     return async dispatch => {
@@ -175,6 +177,81 @@ export const postTicket = async (data) => {
         if (resultJson.success) {
             dispatch({
                 type: CREATE_TICKET,
+                payload: resultJson
+            });
+        } else {
+            dispatch({
+                type: FAIL,
+                payload: resultJson
+            });
+        }
+    }
+}
+
+export const updateTicket = async (data) => {
+    const { id, title, reference, description, assignedId, assignedEmail, status, priority } = data;
+
+    return async dispatch => {
+
+        dispatch({
+            type: LOADING,
+        });
+
+        const result = await fetch(`${BACKEND_URL}/api/tickets/${id}`, {
+            method: 'PUT',
+            headers: {
+                'auth-token': window.localStorage.getItem('token'),
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title,
+                reference,
+                description,
+                assignedId,
+                assignedEmail,
+                status,
+                priority
+            })
+        });
+        const resultJson = await result.json();
+
+        if (resultJson.success) {
+            dispatch({
+                type: UPDATE_TICKET,
+                payload: resultJson
+            });
+        } else {
+            dispatch({
+                type: FAIL,
+                payload: resultJson
+            });
+        }
+    }
+}
+
+export const deleteTicket = id => {
+
+    return async dispatch => {
+
+        dispatch({
+            type: LOADING,
+        });
+
+        const result = await fetch(`${BACKEND_URL}/api/tickets/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'auth-token': window.localStorage.getItem('token'),
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const resultJson = await result.json();
+        console.log(resultJson)
+
+        if (resultJson.success) {
+            dispatch({
+                type: DELETE_TICKET,
                 payload: resultJson
             });
         } else {

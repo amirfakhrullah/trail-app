@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './createTicketPage.css';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
@@ -18,7 +17,7 @@ const formSchema = yup.object({
     description: yup.string().required('Issue description is required').max(300),
 });
 
-export default function CreateTicketPage({ match }) {
+export default function UpdateTicket({ match }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -36,22 +35,28 @@ export default function CreateTicketPage({ match }) {
             return;
         };
 
-        dispatch(organizationAction.getOrganization(match.params.id));
-    }, [dispatch, match.params.id, history]);
+        dispatch(ticketAction.getTicketById(match.params.id))
+            .then(result => {
+                dispatch(organizationAction.getOrganization(result.organization._id));
+            })
+    }, [history, dispatch, match.params.id]);
 
-    const { loading } = useSelector(state => state.organization);
-    const loadingTicket = useSelector(state => state.ticket.loading);
-    const { organizationData } = useSelector(state => state.organization);
+    const { loadingMessage }  = useSelector(state => state.ticket.loading);
+    const { loadingTicket } = useSelector(state => state.ticket);
+    const { ticket } = useSelector(state => state.ticket);
     const { message } = useSelector(state => state.ticket);
 
+    const { loading } = useSelector(state => state.organization);
+    const { organizationData } = useSelector(state => state.organization);
+
     var content;
-    if ((loading === 'idle' || loading === 'loading') && (loadingTicket === 'idle' || loadingTicket === 'loading')) {
+    if ((loading === 'idle' || loading === 'loading') && (loadingTicket === 'idle' || loadingTicket === 'loading' || loadingMessage === 'loading')) {
         content = <Loading />
     } else {
         content = (
             <div className="createTicketPage">
-                <ArrowBackIcon onClick={() => window.location.href = `/organizations/${match.params.id}`} className="backIcon" style={{ fontSize: '30px', color: '#8481E2' }} />
-                <h1 style={{ margin: '0px 0px 20px 20px' }}>Open an issue / ticket</h1>
+                <ArrowBackIcon onClick={() => window.location.href = `/organizations/${organizationData.id}`} className="backIcon" style={{ fontSize: '30px', color: '#8481E2' }} />
+                <h1 style={{ margin: '0px 0px 20px 20px' }}>Update Ticket</h1>
                 {
                     message && <h4 style={{
                         textAlign: 'center',
@@ -61,28 +66,26 @@ export default function CreateTicketPage({ match }) {
                 <div className="createTicketPage__container">
                     <Formik
                         initialValues={{
-                            title: '',
-                            reference: '',
-                            description: '',
-                            assigned: '',
-                            status: '',
-                            priority: ''
+                            title: `${ticket.title}`,
+                            reference: `${ticket.reference}`,
+                            description: `${ticket.description}`,
+                            assigned: `${ticket.assigned.email}`,
+                            status: `${ticket.status}`,
+                            priority: `${ticket.priority}`
                         }}
                         validationSchema={formSchema}
                         onSubmit={(values) => {
-                            dispatch(ticketAction.postTicket({
+                            dispatch(ticketAction.updateTicket({
+                                id: match.params.id,
                                 title: values.title,
                                 reference: values.reference,
                                 description: values.description,
-                                creatorId: localStorage.getItem('userid'),
-                                creatorEmail: localStorage.getItem('useremail'),
                                 assignedId: findMemberIdByEmail(organizationData.members, values.assigned),
                                 assignedEmail: values.assigned,
                                 status: values.status,
-                                priority: values.priority,
-                                organizationId: match.params.id,
-                                organizationName: organizationData.name
-                            }))
+                                priority: values.status === 'Done' ? 'Done' : values.priority
+                            }));
+                            console.log('Done')
                         }}
                     >
                         {({
@@ -97,7 +100,11 @@ export default function CreateTicketPage({ match }) {
                         }) => (
                             <form className="login-form" onSubmit={handleSubmit}>
 
+                                <p>Title</p>
                                 <input
+                                    style={{
+                                        marginTop: '5px'
+                                    }}
                                     className="ticket-input"
                                     type="text"
                                     name="title"
@@ -108,7 +115,13 @@ export default function CreateTicketPage({ match }) {
                                 />
                                 <p className="form-error">{errors.title && touched.title && errors.title}</p>
 
+                                <p style={{
+                                    marginTop: '10px'
+                                }}>Reference</p>
                                 <input
+                                    style={{
+                                        marginTop: '5px'
+                                    }}
                                     className="ticket-input"
                                     type="text"
                                     name="reference"
@@ -119,7 +132,13 @@ export default function CreateTicketPage({ match }) {
                                 />
                                 <p className="form-error"></p>
 
+                                <p style={{
+                                    marginTop: '10px'
+                                }}>Description</p>
                                 <textarea
+                                    style={{
+                                        marginTop: '5px'
+                                    }}
                                     rows="7"
                                     className="ticket-input"
                                     type="text"
@@ -165,6 +184,10 @@ export default function CreateTicketPage({ match }) {
                                             <Field type="radio" name="status" value="Stuck" />
                                             Stuck
                                         </label>
+                                        <label>
+                                            <Field type="radio" name="status" value="Done" />
+                                            Done
+                                        </label>
                                     </div>
 
                                     <div id="my-radio-group2" style={{
@@ -194,7 +217,7 @@ export default function CreateTicketPage({ match }) {
                                 </Form>
 
                                 <button className="form-button" type="submit" disabled={isSubmitting}>
-                                    Create Ticket
+                                    Update Ticket
                                 </button>
                             </form>
                         )}

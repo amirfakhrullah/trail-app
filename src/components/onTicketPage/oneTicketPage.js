@@ -9,8 +9,7 @@ import Loading from '../loading/loading';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
-export default function OneTicketPage({ match }, props) {
-    console.log(props);
+export default function OneTicketPage({ match }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -136,10 +135,10 @@ export default function OneTicketPage({ match }, props) {
                         </div>
                     </div>
                     <div className="edit-bttn">
-                        <button className="delete">
+                        <button className="delete" onClick={() => history.push(`/tickets/${match.params.id}/delete`)}>
                             Delete
                         </button>
-                        <button className="update">
+                        <button className="update" onClick={() => history.push(`/tickets/${match.params.id}/update`)}>
                             Update
                         </button>
                     </div>

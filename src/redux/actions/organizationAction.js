@@ -14,7 +14,7 @@ const headers = {
     'Content-Type': 'application/json'
 }
 
-export const getOrganization = (id) => {
+export const getOrganization = id => {
 
     return async dispatch => {
 
@@ -47,7 +47,7 @@ export const getOrganization = (id) => {
     }
 }
 
-export const postOrganization = async (data) => {
+export const postOrganization = data => {
     const { name, avatar, description, adminId, adminEmail, password } = data;
 
     return async dispatch => {

@@ -44,6 +44,18 @@ export default function (state = initialState, action) {
                 message: action.payload.message,
                 loading: 'success'
             };
+        case UPDATE_TICKET:
+            return {
+                ...state,
+                message: action.payload.message,
+                loading: 'success'
+            };
+        case DELETE_TICKET:
+            return {
+                ...state,
+                message: action.payload.message,
+                loading: 'success'
+            };
         case LOADING:
             return {
                 ...state,

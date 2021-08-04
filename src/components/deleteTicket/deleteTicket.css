@@ -1,0 +1,11 @@
+.deleteTicket {
+    margin-top: 10vh;
+    margin-left: 25vw;
+    width: 800px;
+}
+
+@media only screen and (max-width: 1200px) {
+    .deleteTicket {
+        width: 70vw;
+    }
+}
