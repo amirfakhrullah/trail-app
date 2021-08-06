@@ -10,11 +10,30 @@ export default function DonutChart(props) {
     const [stuckCurrent, setStuckCurrent] = useState(0);
     const [doneCurrent, setDoneCurrent] = useState(0);
 
+    // count tickets based on status
+    const countStatusAmount = status => {
+        if (props.assignedTickets.result) {
+            return props.assignedTickets.result.filter(ticks => ticks.status === status).length;
+        } else {
+            return 0;
+        }
+    }
+
     useEffect(() => {
+        // count max pixels
+        const countMaxBarPixels = () => {
+            const assignedTicks = countStatusAmount('Assigned');
+            const ongoingTicks = countStatusAmount('Ongoing');
+            const stuckTicks = countStatusAmount('Stuck');
+            const doneTicks = countStatusAmount('Done');
+
+            return (props.assignedTickets.result.length !== 0 ? props.assignedTickets.result.length / Math.max(assignedTicks, ongoingTicks, stuckTicks, doneTicks) * 200 : 0)
+        }
+
         // status pixel
         const countStatusPixels = status => {
             if (props.assignedTickets.result) {
-                return (props.assignedTickets.result.filter(ticks => ticks.status === status).length !== 0) ? ((props.assignedTickets.result.filter(ticks => ticks.status === status).length) / (props.assignedTickets.result.length) * 300) : 5
+                return (props.assignedTickets.result.filter(ticks => ticks.status === status).length !== 0) ? ((props.assignedTickets.result.filter(ticks => ticks.status === status).length) / (props.assignedTickets.result.length) * countMaxBarPixels()) : 5;
             } else {
                 return 0;
             }
@@ -43,9 +62,9 @@ export default function DonutChart(props) {
             if (x <= done) {
                 setDoneCurrent(x)
             }
-            x++;
+            x += 2;
         }, 10)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const countPriority = priority => {
@@ -63,14 +82,6 @@ export default function DonutChart(props) {
                 <h3>{number} {priority} Tickets </h3>
             </div>
         )
-    }
-
-    const countStatusAmount = status => {
-        if (props.assignedTickets.result) {
-            return props.assignedTickets.result.filter(ticks => ticks.status === status).length;
-        } else {
-            return 0;
-        }
     }
 
     const chartData = [
