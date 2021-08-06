@@ -1,9 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './donutChart.css';
 
 import { ChartDonut } from '@patternfly/react-charts';
 
 export default function DonutChart(props) {
+
+    const [assignedCurrent, setAssignedCurrent] = useState(0);
+    const [ongoingCurrent, setOngoingCurrent] = useState(0);
+    const [stuckCurrent, setStuckCurrent] = useState(0);
+    const [doneCurrent, setDoneCurrent] = useState(0);
+
+    useEffect(() => {
+        // status pixel
+        const countStatusPixels = status => {
+            if (props.assignedTickets.result) {
+                return (props.assignedTickets.result.filter(ticks => ticks.status === status).length !== 0) ? ((props.assignedTickets.result.filter(ticks => ticks.status === status).length) / (props.assignedTickets.result.length) * 300) : 5
+            } else {
+                return 0;
+            }
+        }
+
+        const assigned = countStatusPixels('Assigned');
+        const ongoing = countStatusPixels('Ongoing');
+        const stuck = countStatusPixels('Stuck');
+        const done = countStatusPixels('Done');
+
+        // bar chart animation algo
+        var x = 0;
+        setInterval(function () {
+            if (x <= assigned) {
+                setAssignedCurrent(x)
+            };
+
+            if (x <= ongoing) {
+                setOngoingCurrent(x);
+            };
+
+            if (x <= stuck) {
+                setStuckCurrent(x);
+            }
+
+            if (x <= done) {
+                setDoneCurrent(x)
+            }
+            x++;
+        }, 10)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const countPriority = priority => {
         if (props.assignedTickets.result) {
@@ -20,15 +63,6 @@ export default function DonutChart(props) {
                 <h3>{number} {priority} Tickets </h3>
             </div>
         )
-    }
-
-    // status pixel
-    const countStatusPixels = status => {
-        if (props.assignedTickets.result) {
-            return (props.assignedTickets.result.filter(ticks => ticks.status === status).length !== 0) ? ((props.assignedTickets.result.filter(ticks => ticks.status === status).length) / (props.assignedTickets.result.length) * 300) : 5
-        } else {
-            return 0;
-        }
     }
 
     const countStatusAmount = status => {
@@ -56,10 +90,6 @@ export default function DonutChart(props) {
             x: 'Priority Not Assigned',
             y: countPriority('No-Priority')
         }
-        // {
-        //     x: 'Done',
-        //     y: countPriority('Done')
-        // }
     ]
 
     return (
@@ -106,28 +136,28 @@ export default function DonutChart(props) {
                     <div style={{
                         width: '5vw',
                         margin: '5px',
-                        height: `${countStatusPixels('Assigned')}px`,
+                        height: `${assignedCurrent}px`,
                         backgroundColor: '#77cad9'
                     }}></div>
 
                     <div style={{
                         width: '5vw',
                         margin: '5px',
-                        height: `${countStatusPixels('Ongoing')}px`,
+                        height: `${ongoingCurrent}px`,
                         backgroundColor: '#2c5f88'
                     }}></div>
 
                     <div style={{
                         width: '5vw',
                         margin: '5px',
-                        height: `${countStatusPixels('Stuck')}px`,
+                        height: `${stuckCurrent}px`,
                         backgroundColor: '#f87969'
                     }}></div>
 
                     <div style={{
                         width: '5vw',
                         margin: '5px',
-                        height: `${countStatusPixels('Done')}px`,
+                        height: `${doneCurrent}px`,
                         backgroundColor: '#ced645'
                     }}></div>
                 </div>
