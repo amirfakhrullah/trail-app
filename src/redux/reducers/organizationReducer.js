@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import { GET_ORGANIZATION, CREATE_ORGANIZATION, UPDATE_ORGANIZATION, DELETE_ORGANIZATION, LOADING, FAIL } from '../actions/organizationAction';
+import { GET_ORGANIZATION, CREATE_ORGANIZATION, UPDATE_ORGANIZATION, UPDATE_ORGANIZATION_PASSWORD, DELETE_ORGANIZATION, LOADING, FAIL } from '../actions/organizationAction';
 
 const initialState = {
     organizationData: {},
@@ -8,7 +8,7 @@ const initialState = {
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default function (state=initialState, action) {
+export default function (state = initialState, action) {
     switch (action.type) {
         case GET_ORGANIZATION:
             return {
@@ -17,6 +17,18 @@ export default function (state=initialState, action) {
                 loading: 'success'
             };
         case CREATE_ORGANIZATION:
+            return {
+                ...state,
+                message: action.payload.message,
+                loading: 'success'
+            };
+        case UPDATE_ORGANIZATION:
+            return {
+                ...state,
+                message: action.payload.message,
+                loading: 'success'
+            };
+        case UPDATE_ORGANIZATION_PASSWORD:
             return {
                 ...state,
                 message: action.payload.message,
@@ -31,7 +43,7 @@ export default function (state=initialState, action) {
             return {
                 ...state,
                 loading: 'fail',
-                message: action.payload
+                message: action.payload.message
             }
         }
     };

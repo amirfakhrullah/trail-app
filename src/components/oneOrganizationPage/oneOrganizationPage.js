@@ -36,14 +36,20 @@ export default function OneOrganizationPage({ match }) {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-        
+
         const token = window.localStorage.getItem('token')
         if (!token) {
             history.push('/login');
             return;
         };
 
-        dispatch(organizationAction.getOrganization(match.params.id));
+        dispatch(organizationAction.getOrganization(match.params.id))
+            .then(result => {
+                const isMember = result.members.find(member => member._id === window.localStorage.getItem('userid'));
+                if (!isMember) {
+                    history.push(`/organizations/${match.params.id}/auth`)
+                }
+            })
         dispatch(ticketAction.getTicketsByOrganizationId(match.params.id));
 
     }, [dispatch, match.params.id, history]);
@@ -90,41 +96,45 @@ export default function OneOrganizationPage({ match }) {
                         <h1 style={{
                             margin: '0px'
                         }}>{organizationData.name}</h1>
-                        <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic" style={{
-                                backgroundColor: 'rgba(255, 255, 255, 0.4)',
-                                padding: '6px 5px 2px 5px',
-                                borderRadius: '5px',
-                                border: 'none',
-                                cursor: 'pointer',
-                                marginLeft: '10px'
-                            }}>
-                                <SettingsIcon style={{ color: 'white' }} />
-                                <ArrowDropDownIcon style={{ color: 'white' }} />
-                            </Dropdown.Toggle>
+                        {
+                            organizationData.admin._id === window.localStorage.getItem('userid') && (
+                                <Dropdown>
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic" style={{
+                                        backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                                        padding: '6px 5px 2px 5px',
+                                        borderRadius: '5px',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                        marginLeft: '10px'
+                                    }}>
+                                        <SettingsIcon style={{ color: 'white' }} />
+                                        <ArrowDropDownIcon style={{ color: 'white' }} />
+                                    </Dropdown.Toggle>
 
-                            <Dropdown.Menu style={{
-                                backgroundColor: 'grey',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'center'
-                            }}>
-                                <Dropdown.Item className="dropdown-menu">Edit Organization's Info</Dropdown.Item>
-                                <Dropdown.Item className="dropdown-menu">Change Organization's Password</Dropdown.Item>
-                                <Dropdown.Item className="dropdown-menu">Delete Organization</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
+                                    <Dropdown.Menu style={{
+                                        backgroundColor: 'grey',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'center'
+                                    }}>
+                                        {/* <Dropdown.Item className="dropdown-menu">Edit Organization's Info</Dropdown.Item> */}
+                                        <Dropdown.Item className="dropdown-menu" onClick={() => history.push(`/organizations/${match.params.id}/update-password`)}>Change Organization's Password</Dropdown.Item>
+                                        <Dropdown.Item className="dropdown-menu" onClick={() => history.push(`/organizations/${match.params.id}/delete`)}>Delete Organization</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            )
+                        }
                     </div>
                     <p>{organizationData.description !== '' && organizationData.description}</p>
-                    <p style={{ color: 'rgb(209, 207, 207)' }}>Admin : <span style={{color: 'white'}}>{organizationData.admin.email}</span> | Members : <span style={{color: 'white'}}>{organizationData.members.length}</span></p>
-                    <p style={{ color: 'rgb(209, 207, 207)' }}>Current Tasks: <b style={{color: 'white'}}>{organizationTickets.result ? <span>{organizationTickets.result.filter(ticks => ticks.priority !== "Done").length} tasks</span> : <span>0 task</span>}</b></p>
+                    <p style={{ color: 'rgb(209, 207, 207)' }}>Admin : <span style={{ color: 'white' }}>{organizationData.admin.email}</span> | Members : <span style={{ color: 'white' }}>{organizationData.members.length}</span></p>
+                    <p style={{ color: 'rgb(209, 207, 207)' }}>Current Tasks: <b style={{ color: 'white' }}>{organizationTickets.result ? <span>{organizationTickets.result.filter(ticks => ticks.priority !== "Done").length} tasks</span> : <span>0 task</span>}</b></p>
                 </div>
                 <div className="edit-bttnOrg" style={{ justifyContent: 'flex-end' }}>
                     <button className="add-member">
-                        <PersonAddIcon style={{color: 'white', fontSize: '20px'}} />
+                        <PersonAddIcon style={{ color: 'white', fontSize: '20px' }} />
                     </button>
 
-                    <button className="add-ticket" onClick={() => window.location.href=`/organizations/${match.params.id}/create-ticket`}>
+                    <button className="add-ticket" onClick={() => window.location.href = `/organizations/${match.params.id}/create-ticket`}>
                         Open an issue / ticket
                     </button>
                 </div>

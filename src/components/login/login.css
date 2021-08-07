@@ -53,6 +53,7 @@
 
 .form-error {
     color: white;
+    max-width: 500px;
 }
 
 .navigateRegister {

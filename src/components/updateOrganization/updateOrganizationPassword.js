@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import './updateOrganizationPassword.css';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
@@ -12,21 +13,19 @@ import * as yup from 'yup';
 import { useHistory } from 'react-router-dom';
 
 const formSchema = yup.object({
-    name: yup.string().required("Organization name is required"),
-    password: yup
+    newPassword: yup
         .string()
-        .required()
-        .min(6)
+        .required('New Password is required')
+        .min(6, 'New Password must be at least 6 characters')
         .matches(
             /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-            "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and one special case Character"
+            "8 Characters, One Uppercase, One Lowercase, One Number and one special case"
         ),
     confirmPassword: yup.string()
         .oneOf([yup.ref('password'), null], 'Passwords must match')
 });
 
-export default function CreateOrganization() {
-
+export default function UpdateOrganizationPassword({ match }) {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -48,8 +47,8 @@ export default function CreateOrganization() {
     } else {
         content = (
             <div className="createTicketPage">
-                <ArrowBackIcon onClick={() => window.location.href = `/organizations`} className="backIcon" style={{ fontSize: '30px', color: '#8481E2' }} />
-                <h1 style={{ margin: '0px 0px 20px 20px' }}>Create an Organization</h1>
+                <ArrowBackIcon onClick={() => window.location.href = `/organizations/${match.params.id}`} className="backIcon" style={{ fontSize: '30px', color: '#8481E2' }} />
+                <h1 style={{ margin: '0px 0px 20px 20px' }}>Change Organization's Password</h1>
                 {
                     message && <h4 style={{
                         textAlign: 'center',
@@ -59,20 +58,17 @@ export default function CreateOrganization() {
                 <div className="createTicketPage__container">
                     <Formik
                         initialValues={{
-                            name: '',
-                            description: '',
                             password: '',
+                            newPassword: '',
                             confirmPassword: '',
                         }}
                         validationSchema={formSchema}
                         onSubmit={(values) => {
-                            dispatch(organizationAction.postOrganization({
-                                name: values.name,
-                                avatar: '',
-                                description: values.description,
-                                adminId: window.localStorage.getItem('userid'),
-                                adminEmail: window.localStorage.getItem('useremail'),
-                                password: values.password
+                            dispatch(organizationAction.updateOrganizationPassword({
+                                id: match.params.id,
+                                userId: window.localStorage.getItem('userid'),
+                                password: values.password,
+                                newPassword: values.newPassword
                             }));
                         }}
                     >
@@ -90,32 +86,9 @@ export default function CreateOrganization() {
 
                                 <input
                                     className="ticket-input"
-                                    type="text"
-                                    name="name"
-                                    placeholder='Organization name *'
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.name}
-                                />
-                                <p className="form-error">{errors.name && touched.name && errors.name}</p>
-
-                                <textarea
-                                    rows="7"
-                                    className="ticket-input"
-                                    type="text"
-                                    name="description"
-                                    placeholder='Description'
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.description}
-                                />
-                                <p className="form-error">{errors.description && touched.description && errors.description}</p>
-
-                                <input
-                                    className="ticket-input"
                                     type="password"
                                     name="password"
-                                    placeholder='Password *'
+                                    placeholder='Current password *'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.password}
@@ -125,8 +98,19 @@ export default function CreateOrganization() {
                                 <input
                                     className="ticket-input"
                                     type="password"
+                                    name="newPassword"
+                                    placeholder='New Password *'
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.newPassword}
+                                />
+                                <p className="form-error">{errors.newPassword && touched.newPassword && errors.newPassword}</p>
+
+                                <input
+                                    className="ticket-input"
+                                    type="password"
                                     name="confirmPassword"
-                                    placeholder='Confirm Password *'
+                                    placeholder='Confirm New Password *'
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.confirmPassword}
@@ -134,7 +118,7 @@ export default function CreateOrganization() {
                                 <p className="form-error">{errors.confirmPassword && touched.confirmPassword && errors.confirmPassword}</p>
 
                                 <button className="form-button" type="submit" disabled={isSubmitting}>
-                                    Create
+                                    Update Password
                                 </button>
                             </form>
                         )}
