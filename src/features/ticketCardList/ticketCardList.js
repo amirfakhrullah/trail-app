@@ -54,7 +54,7 @@ export default function TicketCardList(props) {
                 tickets && tickets.map(ticks => (
                     <div className="ticketCard" key={ticks._id}>
                         <div className="ticketCard__left">
-                            <h3 onClick={() => window.location.href = `/tickets/${ticks._id}`}>{ticks.title}</h3>
+                            <h3 onClick={() => window.location.href = `/tickets/${ticks._id}`}>{ticks.title.length > 70 ? `${ticks.title.slice(0, 70)}..` : ticks.title}</h3>
                             <p style={{ marginTop: '5px', color: 'rgb(209, 207, 207)' }}>Opened by {ticks.creator.email}</p>
                             <div style={{
                                 display: 'flex',

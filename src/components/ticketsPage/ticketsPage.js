@@ -22,6 +22,8 @@ export default function TicketsPage() {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+        
         // Add active class to the current button (highlight it)
         if (document.getElementById("myDIV")) {
             var header = document.getElementById("myDIV");

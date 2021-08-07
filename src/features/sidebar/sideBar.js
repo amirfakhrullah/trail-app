@@ -116,7 +116,7 @@ export default function SideBar() {
                                 color: 'white',
                                 marginLeft: '10px',
                                 marginRight: '10px'
-                            }}>{username}</p>
+                            }}>{username.length > 16 ? `${username.slice(0, 16)}..` : username}</p>
                             <ArrowDropDownIcon style={{ color: 'white' }} />
                         </div>
                     </Dropdown.Toggle>

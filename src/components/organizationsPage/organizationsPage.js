@@ -17,6 +17,8 @@ export default function OrganizationsPage() {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+        
         const token = window.localStorage.getItem('token')
         if (!token) {
             history.push('/login');
@@ -47,7 +49,7 @@ export default function OrganizationsPage() {
                     marginBottom: '20px'
                 }}>
                     <h1>My Organizations / Projects</h1>
-                    <div className="addOrgBttn">
+                    <div className="addOrgBttn" onClick={() => window.location.href="/create-organization"}>
                         <AddIcon style={{ color: 'white', fontSize: '20px' }} />
                     </div>
                 </div>

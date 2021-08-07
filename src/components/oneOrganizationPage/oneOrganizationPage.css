@@ -1,6 +1,13 @@
 .oneOrganizationPage {
     margin-top: 4vh;
     margin-left: 25vw;
+    max-width: 800px
+}
+
+@media only screen and (max-width: 1300px) {
+    .oneOrganizationPage {
+        width: 55vw
+    }
 }
 
 .dropdown-menu {

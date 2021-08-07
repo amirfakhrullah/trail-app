@@ -30,7 +30,6 @@ export default function DeleteTicket({ match }) {
     }, [history, dispatch, match.params.id]);
 
     const { loadingTicket } = useSelector(state => state.ticket);
-    const { loading } = useSelector(state => state.ticket);
     const { ticket } = useSelector(state => state.ticket);
 
     const { organizationData } = useSelector(state => state.organization);

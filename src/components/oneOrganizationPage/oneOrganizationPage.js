@@ -35,6 +35,8 @@ export default function OneOrganizationPage({ match }) {
     }
 
     useEffect(() => {
+        window.scrollTo(0, 0);
+        
         const token = window.localStorage.getItem('token')
         if (!token) {
             history.push('/login');
