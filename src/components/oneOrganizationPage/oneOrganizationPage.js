@@ -47,7 +47,7 @@ export default function OneOrganizationPage({ match }) {
             .then(result => {
                 const isMember = result.members.find(member => member._id === window.localStorage.getItem('userid'));
                 if (!isMember) {
-                    history.push(`/organizations/${match.params.id}/auth`)
+                    history.push(`/organizations/${match.params.id}/auth/denied`)
                 }
             })
         dispatch(ticketAction.getTicketsByOrganizationId(match.params.id));
@@ -131,7 +131,7 @@ export default function OneOrganizationPage({ match }) {
                 </div>
                 <div className="edit-bttnOrg" style={{ justifyContent: 'flex-end' }}>
                     <button className="add-member">
-                        <PersonAddIcon style={{ color: 'white', fontSize: '20px' }} />
+                        <PersonAddIcon style={{ color: 'white', fontSize: '20px' }} onClick={() => window.location.href=`/organizations/${match.params.id}/invite`} />
                     </button>
 
                     <button className="add-ticket" onClick={() => window.location.href = `/organizations/${match.params.id}/create-ticket`}>

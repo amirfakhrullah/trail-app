@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './updateOrganizationPassword.css';
 
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 

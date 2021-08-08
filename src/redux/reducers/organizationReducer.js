@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import { GET_ORGANIZATION, CREATE_ORGANIZATION, UPDATE_ORGANIZATION, UPDATE_ORGANIZATION_PASSWORD, DELETE_ORGANIZATION, LOADING, FAIL } from '../actions/organizationAction';
+import { GET_ORGANIZATION, INVITE_ORGANIZATION, ORGANIZATION_JOINED, CREATE_ORGANIZATION, UPDATE_ORGANIZATION, UPDATE_ORGANIZATION_PASSWORD, DELETE_ORGANIZATION, LOADING, FAIL } from '../actions/organizationAction';
 
 const initialState = {
     organizationData: {},
@@ -14,6 +14,18 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 organizationData: action.payload,
+                loading: 'success'
+            };
+        case INVITE_ORGANIZATION:
+            return {
+                ...state,
+                message: action.payload.message,
+                loading: 'success'
+            };
+        case ORGANIZATION_JOINED:
+            return {
+                ...state,
+                message: action.payload.message,
                 loading: 'success'
             };
         case CREATE_ORGANIZATION:

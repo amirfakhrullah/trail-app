@@ -2,6 +2,8 @@ import { BACKEND_URL } from "./authAction";
 
 
 export const GET_ORGANIZATION = 'GET_ORGANIZATION';
+export const INVITE_ORGANIZATION = 'INVITE_ORGANIZATION';
+export const ORGANIZATION_JOINED = 'ORGANIZATION_JOINED';
 export const CREATE_ORGANIZATION = 'CREATE_ORGANIZATION';
 export const UPDATE_ORGANIZATION = 'UPDATE_ORGANIZATION';
 export const UPDATE_ORGANIZATION_PASSWORD = 'UPDATE_ORGANIZATION_PASSWORD';
@@ -42,6 +44,73 @@ export const getOrganization = id => {
                 type: FAIL,
                 payload: 'No Data Found!'
             });
+        }
+
+        return resultJson;
+    }
+}
+
+export const organizationInvite = data => {
+    const { id, userId } = data;
+
+    return async dispatch => {
+
+        dispatch({
+            type: LOADING,
+        });
+
+        const result = await fetch(`${BACKEND_URL}/api/auth/organization/${id}`, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify({
+                userId
+            })
+        });
+        const resultJson = await result.json();
+
+        if (resultJson.success) {
+            dispatch({
+                type: INVITE_ORGANIZATION,
+                payload: resultJson
+            });
+        } else {
+            dispatch({
+                type: FAIL,
+                payload: resultJson
+            })
+        }
+    }
+}
+
+export const organizationAuth = data => {
+    const { id, userId, key } = data;
+
+    return async dispatch => {
+
+        dispatch({
+            type: LOADING,
+        });
+
+        const result = await fetch(`${BACKEND_URL}/api/auth/add-organization/${id}`, {
+            method: 'PUT',
+            headers: headers,
+            body: JSON.stringify({
+                userId,
+                key
+            })
+        });
+        const resultJson = await result.json();
+
+        if (resultJson.success) {
+            dispatch({
+                type: ORGANIZATION_JOINED,
+                payload: resultJson
+            });
+        } else {
+            dispatch({
+                type: FAIL,
+                payload: resultJson
+            })
         }
 
         return resultJson;
