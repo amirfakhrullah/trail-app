@@ -2,6 +2,7 @@
 import { GET_ALL_USERS, GET_USER_DATA, UPDATE_USER, DELETE_USER, LOADING, FAIL } from '../actions/userAction';
 
 const initialState = {
+    allUsers: [],
     userData: {},
     loading: 'idle',
     message: {}
@@ -13,7 +14,7 @@ export default function (state = initialState, action) {
         case GET_ALL_USERS:
             return {
                 ...state,
-                userData: action.payload.message,
+                allUsers: action.payload,
                 loading: 'success'
             };
         case GET_USER_DATA:

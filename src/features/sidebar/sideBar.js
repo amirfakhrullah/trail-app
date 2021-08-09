@@ -41,6 +41,13 @@ export default function SideBar() {
         };
 
         const decoded = decodeToken(token);
+        if (decoded.exp < (Date.now() / 1000)) {
+            window.localStorage.removeItem('token');
+            window.localStorage.removeItem('username');
+            window.localStorage.removeItem('userid');
+            window.localStorage.removeItem('useremail');
+            window.location.href = '/login'
+        }
         setUsername(decoded.name);
     }, [history])
 

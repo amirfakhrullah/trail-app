@@ -16,6 +16,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import PersonIcon from '@material-ui/icons/Person';
 
 export default function OneOrganizationPage({ match }) {
 
@@ -96,6 +97,34 @@ export default function OneOrganizationPage({ match }) {
                         <h1 style={{
                             margin: '0px'
                         }}>{organizationData.name}</h1>
+                        <Dropdown>
+                            <Dropdown.Toggle variant="success" id="dropdown-basic2" style={{
+                                backgroundColor: 'rgba(255, 255, 255, 0.4)',
+                                padding: '7px 10px',
+                                borderRadius: '5px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                marginLeft: '10px',
+                                display: 'flex',
+                                alignItems: 'center'
+                            }}>
+                                <PersonIcon style={{ color: 'white' }} />
+                                <ArrowDropDownIcon style={{ color: 'white' }} />
+                            </Dropdown.Toggle>
+
+                            <Dropdown.Menu style={{
+                                backgroundColor: 'grey',
+                                display: 'flex',
+                                flexDirection: 'column',
+                                justifyContent: 'center'
+                            }}>
+                                {
+                                    organizationData.members.map(member => (
+                                        <Dropdown.Item className="dropdown-menu" style={{ pointerEvents: 'none' }}>{member.email}</Dropdown.Item>
+                                    ))
+                                }
+                            </Dropdown.Menu>
+                        </Dropdown>
                         {
                             organizationData.admin._id === window.localStorage.getItem('userid') && (
                                 <Dropdown>
@@ -131,7 +160,7 @@ export default function OneOrganizationPage({ match }) {
                 </div>
                 <div className="edit-bttnOrg" style={{ justifyContent: 'flex-end' }}>
                     <button className="add-member">
-                        <PersonAddIcon style={{ color: 'white', fontSize: '20px' }} onClick={() => window.location.href=`/organizations/${match.params.id}/invite`} />
+                        <PersonAddIcon style={{ color: 'white', fontSize: '20px' }} onClick={() => window.location.href = `/organizations/${match.params.id}/invite`} />
                     </button>
 
                     <button className="add-ticket" onClick={() => window.location.href = `/organizations/${match.params.id}/create-ticket`}>

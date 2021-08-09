@@ -3,14 +3,12 @@ import './organizationMiniContainer.css';
 
 import * as  organizationAction from '../../redux/actions/organizationAction';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 
 import GroupIcon from '@material-ui/icons/Group';
 
 export default function OrganizationMiniContainer(props) {
 
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const [organization, setOrganization] = useState('');
 
@@ -22,7 +20,7 @@ export default function OrganizationMiniContainer(props) {
     }, [dispatch, props.org._id]);
 
     return (
-        <div className="organizationCard" onClick={() => history.push(`/organizations/${props.org._id}`)}>
+        <div className="organizationCard" onClick={() => window.location.href=`/organizations/${props.org._id}`}>
             <div className="organizationCardContent">
                 <GroupIcon />
                 <h2>{props.org.name}</h2>

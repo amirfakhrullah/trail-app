@@ -1,0 +1,56 @@
+table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 800px;
+}
+
+table tr {
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    font-size: 14px;
+}
+
+th {
+    background-color: #8481E2;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #000000;
+}
+
+td button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+td:last-child {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 1100px) {
+    table {
+        width: 60vw;
+    }
+
+    .userNameSearch,
+    .indexTable,
+    .nameTable,
+    .roleTable {
+        display: none;
+    }
+}

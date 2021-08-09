@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './signUp.css';
 
 import Loading from '../loading/loading';
@@ -36,6 +36,15 @@ export default function SignUp() {
 
     const history = useHistory();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        const token = window.localStorage.getItem('token')
+        if (token) {
+            history.push('/');
+            return;
+        };
+    })
+
     const loading = useSelector(state => state.auth.loading);
     const errorMessage = useSelector(state => state.auth.errorMessage);
 
