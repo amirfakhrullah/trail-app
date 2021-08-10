@@ -15,11 +15,17 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import PersonIcon from '@material-ui/icons/Person';
 import Dropdown from 'react-bootstrap/Dropdown';
 
+import { useDispatch, useSelector } from 'react-redux';
+import * as ticketAction from '../../redux/actions/ticketAction';
+
 export default function SideBar() {
 
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const [username, setUsername] = useState('');
+
+    const { assignedTickets } = useSelector(state => state.ticket);
 
     const Logout = () => {
         try {
@@ -31,6 +37,29 @@ export default function SideBar() {
         } catch (error) {
             console.log(error)
         }
+    }
+
+    const findUndoneTickets = tickets => {
+        return tickets.filter(ticks => ticks.status !== "Done");
+    }
+
+    const redCircleSize = count => {
+        var size = 25;
+        if (count >= 100) {
+            size  = 30;
+        } else if (count >= 1000) {
+            size = 40
+        }
+        return {
+            height: `${size}px`,
+            width: `${size}px`,
+            borderRadius: '50%',
+            backgroundColor: 'red',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginLeft: '5px'
+        };
     }
 
     useEffect(() => {
@@ -49,7 +78,11 @@ export default function SideBar() {
             window.location.href = '/login'
         }
         setUsername(decoded.name);
-    }, [history])
+
+        if (!assignedTickets.result) {
+            dispatch(ticketAction.getAssignedTickets(decoded.email))
+        }
+    }, [history, dispatch, assignedTickets])
 
     const navLinkSideBar = text => {
 
@@ -76,6 +109,13 @@ export default function SideBar() {
             <div className="sidebarContainer">
                 {icon}
                 <h4>{text}</h4>
+                {
+                    text === "Assigned" && (
+                        <div style={assignedTickets.result && redCircleSize(findUndoneTickets(assignedTickets.result).length)}>
+                            <p>{assignedTickets.result && findUndoneTickets(assignedTickets.result).length}</p>
+                        </div>
+                    )
+                }
             </div>
         )
     };
@@ -119,7 +159,7 @@ export default function SideBar() {
                             alignItems: 'center'
                         }}>
                             <PersonIcon style={{ color: 'white' }} />
-                            <p className="userNav" style={{ 
+                            <p className="userNav" style={{
                                 color: 'white',
                                 marginLeft: '10px',
                                 marginRight: '10px'

@@ -50,9 +50,6 @@
     position: fixed;
     right: 0;
     top: 0;
-    z-index: 100;
-    /* width: 300px; */
-    height: 100vh;
 }
 
 .dropdown-menu-user {

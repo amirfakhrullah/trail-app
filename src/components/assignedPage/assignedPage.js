@@ -21,9 +21,29 @@ export default function AssignedPage() {
         setPriorityActive(input);
     }
 
+    const findUndoneTickets = tickets => {
+        return tickets.filter(ticks => ticks.status !== "Done");
+    }
+
+    const redCircleSize = count => {
+        var size = 30;
+        if (count >= 1000) {
+            size = 40
+        }
+        return {
+            height: `${size}px`,
+            width: `${size}px`,
+            borderRadius: '50%',
+            backgroundColor: 'red',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+        };
+    }
+
     useEffect(() => {
         window.scrollTo(0, 0);
-        
+
         // Add active class to the current button (highlight it)
         if (document.getElementById("myDIV")) {
             var header = document.getElementById("myDIV");
@@ -62,7 +82,16 @@ export default function AssignedPage() {
     } else {
         content = (
             <div className="assignedPage">
-                <h1 style={{ marginBottom: '20px' }}>Tickets Assigned To Me</h1>
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    marginBottom: '20px'
+                }}>
+                    <h1 style={{margin: '0px', paddingRight: '0.5vw'}}>Tickets Assigned To Me</h1>
+                    <div style={assignedTickets.result && redCircleSize(findUndoneTickets(assignedTickets.result).length)}>
+                        <p>{assignedTickets.result && findUndoneTickets(assignedTickets.result).length}</p>
+                    </div>
+                </div>
                 <SearchFilter />
                 <div className='dashboardCard purple'>
                     <div className="priority-navigator-container" id="myDIV">

@@ -2,3 +2,33 @@
     display: inline;
     width: 50vw;
 }
+
+.organizationCard {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 20px;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    width: 21vw;
+    transition: transform 0.2s ease-out;
+}
+
+.organizationCardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.organizationCardContent > p {
+    color: rgb(209, 207, 207);
+}
+
+.organizationCard:hover {
+    cursor: pointer;
+    /* transform: scale(1.03); */
+    background-color: #8481e2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+}
