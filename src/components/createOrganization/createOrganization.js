@@ -39,7 +39,7 @@ export default function CreateOrganization() {
 
     }, [history]);
 
-    const { loading } = useSelector(state => state.organization);
+    const { loading } = useSelector(state => state.ticket);
     const { message } = useSelector(state => state.organization);
 
     var content;

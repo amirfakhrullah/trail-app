@@ -53,7 +53,7 @@ export default function InviteUser({ match }) {
             }
             txtValue = a.textContent || a.innerText;
             if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
+                // li[i].style.display = "";
             } else {
                 li[i].style.display = "none";
             }
@@ -80,7 +80,7 @@ export default function InviteUser({ match }) {
             <div className='oneOrganizationPage'>
                 <ArrowBackIcon onClick={() => window.location.href = `/organizations/${match.params.id}`} className="backIcon" style={{ fontSize: '30px', color: '#8481E2' }} />
                 <h1>Invite member</h1>
-                <div className="userNameSearch">
+                {/* <div className="userNameSearch">
                     <Input className="input-material-ui"
                         style={{ color: 'white', maxWidth: '400px', margin: '20px 0px 10px 0px' }}
                         type="text"
@@ -89,7 +89,7 @@ export default function InviteUser({ match }) {
                         placeholder="Search for name.."
                         title="Type in a name"
                     />
-                </div>
+                </div> */}
                 <div className="userEmailSearch">
                     <Input className="input-material-ui"
                         style={{ color: 'white', maxWidth: '400px', margin: '10px 0px 20px 0px' }}
