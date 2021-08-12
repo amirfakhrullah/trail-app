@@ -98,7 +98,7 @@ export default function OneOrganizationPage({ match }) {
                             margin: '0px'
                         }}>{organizationData.name}</h1>
                         <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic2" style={{
+                            <Dropdown.Toggle variant="success" id="dropdown-basic2" title="Members" style={{
                                 backgroundColor: 'rgba(255, 255, 255, 0.4)',
                                 padding: '7px 10px',
                                 borderRadius: '5px',
@@ -120,7 +120,7 @@ export default function OneOrganizationPage({ match }) {
                             }}>
                                 {
                                     organizationData.members.map(member => (
-                                        <Dropdown.Item className="dropdown-menu" style={{ pointerEvents: 'none' }}>{member.email}</Dropdown.Item>
+                                        <Dropdown.Item id={member._id} className="dropdown-menu" style={{ pointerEvents: 'none' }}>{member.email}</Dropdown.Item>
                                     ))
                                 }
                             </Dropdown.Menu>
@@ -128,7 +128,7 @@ export default function OneOrganizationPage({ match }) {
                         {
                             organizationData.admin._id === window.localStorage.getItem('userid') && (
                                 <Dropdown>
-                                    <Dropdown.Toggle variant="success" id="dropdown-basic" style={{
+                                    <Dropdown.Toggle title="Settings" variant="success" id="dropdown-basic" style={{
                                         backgroundColor: 'rgba(255, 255, 255, 0.4)',
                                         padding: '6px 5px 2px 5px',
                                         borderRadius: '5px',
@@ -159,8 +159,8 @@ export default function OneOrganizationPage({ match }) {
                     <p style={{ color: 'rgb(209, 207, 207)' }}>Current Tasks: <b style={{ color: 'white' }}>{organizationTickets.result ? <span>{organizationTickets.result.filter(ticks => ticks.priority !== "Done").length} tasks</span> : <span>0 task</span>}</b></p>
                 </div>
                 <div className="edit-bttnOrg" style={{ justifyContent: 'flex-end' }}>
-                    <button className="add-member">
-                        <PersonAddIcon style={{ color: 'white', fontSize: '20px' }} onClick={() => window.location.href = `/organizations/${match.params.id}/invite`} />
+                    <button title="Invite user" className="add-member" onClick={() => window.location.href = `/organizations/${match.params.id}/invite`}>
+                        <PersonAddIcon style={{ color: 'white', fontSize: '20px' }} />
                     </button>
 
                     <button className="add-ticket" onClick={() => window.location.href = `/organizations/${match.params.id}/create-ticket`}>

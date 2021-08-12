@@ -49,7 +49,7 @@ export default function OrganizationsPage() {
                     marginBottom: '20px'
                 }}>
                     <h1>My Organizations / Projects</h1>
-                    <div className="addOrgBttn" onClick={() => window.location.href="/create-organization"}>
+                    <div title="Create an organization" className="addOrgBttn" onClick={() => window.location.href="/create-organization"}>
                         <AddIcon style={{ color: 'white', fontSize: '20px' }} />
                     </div>
                 </div>

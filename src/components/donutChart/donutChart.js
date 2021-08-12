@@ -19,6 +19,11 @@ export default function DonutChart(props) {
         }
     }
 
+    // count status percentage
+    const countPercentStatus = status => {
+        return Math.round(countStatusAmount(status)/props.assignedTickets.result.length * 100)
+    }
+
     useEffect(() => {
         // count max pixels
         const countMaxBarPixels = () => {
@@ -47,23 +52,28 @@ export default function DonutChart(props) {
         // bar chart animation algo
         var x = 0;
         setInterval(function () {
-            if (x <= assigned) {
-                setAssignedCurrent(x)
+            if ((x * countStatusAmount("Assigned") !== 0 ? x * countStatusAmount("Assigned") : 5) <= assigned) {
+                setAssignedCurrent(x * countStatusAmount("Assigned") !== 0 ? x * countStatusAmount("Assigned") : 5)
             };
 
-            if (x <= ongoing) {
-                setOngoingCurrent(x);
+            if ((x * countStatusAmount("Ongoing") !== 0 ? x * countStatusAmount("Ongoing") : 5) <= ongoing) {
+                setOngoingCurrent(x * countStatusAmount("Ongoing") !== 0 ? x * countStatusAmount("Ongoing") : 5);
             };
 
-            if (x <= stuck) {
-                setStuckCurrent(x);
+            if ((x * countStatusAmount("Stuck") !== 0 ? x * countStatusAmount("Stuck") : 5) <= stuck) {
+                setStuckCurrent(x * countStatusAmount("Stuck") !== 0 ? x * countStatusAmount("Stuck") : 5);
             }
 
-            if (x <= done) {
-                setDoneCurrent(x)
+            if ((x * countStatusAmount("Done") !== 0 ? x * countStatusAmount("Done") : 5) <= done) {
+                setDoneCurrent(x * countStatusAmount("Done") !== 0 ? x * countStatusAmount("Done") : 5)
             }
-            x += 2;
-        }, 10)
+
+            if (props.assignedTickets.result.length > 10) {
+                x += 1;
+            } else {
+                x += 2;
+            }
+        }, 20)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -144,28 +154,28 @@ export default function DonutChart(props) {
                     marginBottom: '20px'
                 }}>
 
-                    <div style={{
+                    <div title={`${countPercentStatus("Assigned")}% Assigned`} style={{
                         width: '5vw',
                         margin: '5px',
                         height: `${assignedCurrent}px`,
                         backgroundColor: '#77cad9'
                     }}></div>
 
-                    <div style={{
+                    <div title={`${countPercentStatus("Ongoing")}% Ongoing`} style={{
                         width: '5vw',
                         margin: '5px',
                         height: `${ongoingCurrent}px`,
                         backgroundColor: '#2c5f88'
                     }}></div>
 
-                    <div style={{
+                    <div title={`${countPercentStatus("Stuck")}% Stuck`} style={{
                         width: '5vw',
                         margin: '5px',
                         height: `${stuckCurrent}px`,
                         backgroundColor: '#f87969'
                     }}></div>
 
-                    <div style={{
+                    <div title={`${countPercentStatus("Done")}% Done`} style={{
                         width: '5vw',
                         margin: '5px',
                         height: `${doneCurrent}px`,
