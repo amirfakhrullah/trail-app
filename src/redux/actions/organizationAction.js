@@ -187,3 +187,41 @@ export const updateOrganizationPassword = data => {
         }
     }
 }
+
+export const deleteOrganization = data => {
+
+    const { id, userId } = data;
+
+    return async dispatch => {
+
+        dispatch({
+            type: LOADING,
+        });
+
+        const result = await fetch(`${BACKEND_URL}/api/organizations/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'auth-token': window.localStorage.getItem('token'),
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId
+            })
+        });
+        const resultJson = await result.json();
+        console.log(resultJson)
+
+        if (resultJson.success) {
+            dispatch({
+                type: DELETE_ORGANIZATION,
+                payload: resultJson
+            });
+        } else {
+            dispatch({
+                type: FAIL,
+                payload: resultJson
+            });
+        }
+    }
+}

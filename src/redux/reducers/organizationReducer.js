@@ -46,6 +46,12 @@ export default function (state = initialState, action) {
                 message: action.payload.message,
                 loading: 'success'
             };
+        case DELETE_ORGANIZATION:
+            return {
+                ...state,
+                message: action.payload.message,
+                loading: 'success'
+            };
         case LOADING:
             return {
                 ...state,

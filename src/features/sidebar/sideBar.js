@@ -175,7 +175,6 @@ export default function SideBar() {
                         justifyContent: 'center'
                     }}>
                         <Dropdown.Item className="dropdown-menu-user">Edit Info</Dropdown.Item>
-                        <Dropdown.Item className="dropdown-menu-user">Create An Organization</Dropdown.Item>
                         <Dropdown.Item className="dropdown-menu-user">Change Password</Dropdown.Item>
                         <Dropdown.Item className="dropdown-menu-user" onClick={() => Logout()}>Logout</Dropdown.Item>
                     </Dropdown.Menu>

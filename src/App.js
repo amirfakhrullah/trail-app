@@ -22,6 +22,7 @@ import CreateOrganization from './components/createOrganization/createOrganizati
 import UpdateOrganizationPassword from './components/updateOrganization/updateOrganizationPassword';
 import InviteUser from './components/inviteUser/inviteUser';
 import OrganizationVerification from './components/organizationVerification/organizationVerification';
+import DeleteOrganization from './components/deleteOrganization/deleteOrganization';
 
 export default function App() {
   return (
@@ -59,6 +60,7 @@ export default function App() {
           <Route exact path="/tickets/:id/delete" component={DeleteTicket} />
           <Route exact path="/organizations/:id" component={OneOrganizationPage} />
           <Route exact path="/organizations/:id/invite" component={InviteUser} />
+          <Route exact path="/organizations/:id/delete" component={DeleteOrganization} />
           <Route exact path="/organizations/:id/create-ticket" component={CreateTicketPage} />
           <Route exact path="/organizations/:id/update-password" component={UpdateOrganizationPassword} />
         </Router>

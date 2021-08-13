@@ -82,7 +82,7 @@ export default function OneTicketPage({ match }) {
                                 display: 'flex',
                                 flexDirection: 'row'
                             }}>
-                                <AssignmentIcon style={{marginTop: '2px'}} />
+                                <AssignmentIcon style={{ marginTop: '2px' }} />
                                 <h2 className="title-card" style={{
                                     fontWeight: 'bold',
                                     margin: '0px 10px'
@@ -95,12 +95,17 @@ export default function OneTicketPage({ match }) {
                                 margin: '10px 20px 0px 10px',
                                 color: 'rgb(209, 207, 207)'
                             }}>Description: </p>
-                            <p style={{
-                                margin: '5px 20px 10px 10px',
-                                padding: '20px 10px',
-                                border: '1px solid white',
-                                borderRadius: '5px'
-                            }}>{ticket.description}</p>
+                            <textarea
+                                style={{
+                                    margin: '5px 20px 10px 10px',
+                                    border: '1px solid white',
+                                    borderRadius: '5px',
+                                    color: 'black'
+                                }}
+                                rows="7"
+                                className="ticket-input"
+                                disabled
+                            >{ticket.description}</textarea>
                             <p style={{ margin: '10px 20px 10px 10px' }}><span style={{
                                 color: 'rgb(209, 207, 207)'
                             }}>Opened by:</span> {ticket.creator.email}</p>
