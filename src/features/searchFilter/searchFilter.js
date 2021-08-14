@@ -7,6 +7,17 @@ export default function SearchFilter() {
     const [filter, setFilter] = useState("");
     const [query, setQuery] = useState("");
 
+    function defaultTicket() {
+        setQuery("");
+        setFilter("");
+        var ul, li, i;
+        ul = document.getElementById("myUl");
+        li = ul.getElementsByClassName("ticketCard");
+        for (i = 0; i < li.length; i++) {
+            li[i].style.display = "";
+        }
+    }
+
     const handleChangeFilter = (event) => {
         setFilter(event.target.value)
         var ul, li, a, p, i, txtValue;
@@ -23,6 +34,8 @@ export default function SearchFilter() {
                     li[i].style.display = ""
                 }
             }
+        } else {
+            defaultTicket()
         }
     }
 
@@ -41,17 +54,6 @@ export default function SearchFilter() {
             } else {
                 li[i].style.display = "none";
             }
-        }
-    }
-
-    function defaultTicket() {
-        setQuery("");
-        setFilter("");
-        var ul, li, i;
-        ul = document.getElementById("myUl");
-        li = ul.getElementsByClassName("ticketCard");
-        for (i = 0; i < li.length; i++) {
-            li[i].style.display = "";
         }
     }
 

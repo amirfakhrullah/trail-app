@@ -13,14 +13,14 @@ const formSchema = yup.object({
     position: yup.string().required('Role is required')
 });
 
-export default function EditUserInfo({ match }) {
+export default function EditUserInfo() {
 
     const dispatch = useDispatch();
     const [ messageType, setMessageType ] = useState(null);
 
     useEffect(() => {
-        dispatch(userAction.getUserData(match.params.id));
-    }, [dispatch, match.params.id])
+        dispatch(userAction.getUserData(window.localStorage.getItem('userid')));
+    }, [dispatch])
 
     const { userData } = useSelector(state => state.user);
     const { loading } = useSelector(state => state.user);
@@ -56,7 +56,7 @@ export default function EditUserInfo({ match }) {
                         validationSchema={formSchema}
                         onSubmit={(values) => {
                             dispatch(userAction.updateUserData({
-                                id: match.params.id,
+                                id: window.localStorage.getItem('userid'),
                                 name: values.name,
                                 avatar: userData.avatar,
                                 description: values.description,

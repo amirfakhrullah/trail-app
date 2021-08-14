@@ -77,10 +77,10 @@ export default function Login({ match }) {
                                     if (result.success) {
                                         try {
                                             window.localStorage.setItem('token', result.token);
-                                            if (match.params.id && match.params.key) {
-                                                window.location.href = `/organizations/${match.params.id}/auth/${match.params.key}`
-                                            } else {
+                                            if (!match.params.id && !match.params.key) {
                                                 history.push('/');
+                                            } else {
+                                                window.location.href = `/organizations/${match.params.id}/auth/${match.params.key}`
                                             }
                                             // window.location.href = '/';
                                         } catch (err) {
@@ -125,7 +125,7 @@ export default function Login({ match }) {
                                 />
                                 <p className="form-error">{errors.password && touched.password && errors.password}</p>
 
-                                <p className="forgot-password" onClick={() => console.log('Forgot Password')}>Forgot Password?</p>
+                                <p className="forgot-password" onClick={() => window.location.href="/forgot-password"}>Forgot Password?</p>
 
                                 <button className="form-button" style={{
                                     marginTop: '0px'

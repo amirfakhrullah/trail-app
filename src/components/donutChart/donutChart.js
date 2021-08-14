@@ -21,10 +21,14 @@ export default function DonutChart(props) {
 
     // count status percentage
     const countPercentStatus = status => {
-        return Math.round(countStatusAmount(status)/props.assignedTickets.result.length * 100)
+        return Math.round(countStatusAmount(status) / props.assignedTickets.result.length * 100)
     }
 
     useEffect(() => {
+        if (!props.assignedTickets.result) {
+            window.location.reload();
+        };
+
         // count max pixels
         const countMaxBarPixels = () => {
             const assignedTicks = countStatusAmount('Assigned');
@@ -115,104 +119,110 @@ export default function DonutChart(props) {
 
     return (
         <div className="donutChart">
-            {/* Donut chart */}
-            <div style={{ width: '400px' }}>
-                <ChartDonut
-                    constrainToVisibleArea={true}
-                    data={chartData}
-                    donutOrientation="top"
-                    height={240}
-                    labels={({ datum }) => `${datum.x}: ${datum.y}%`}
-                    padding={{
-                        bottom: 20, // Adjusted to accommodate legend
-                        left: 20,
-                        right: 20,
-                        top: 20
-                    }}
-                    width={300}
-                    colorScale={['rgba(214, 69, 65, 1)', '#FDDA0D', '#0E26B1', 'green']}
-                />
-                <div className="dataText">
-                    <h2 style={{ textDecoration: 'underline' }}>Task Priorities :</h2>
-                    {dataText('rgba(214, 69, 65, 1)', chartData[0].x, chartData[0].y)}
-                    {dataText('#FDDA0D', chartData[1].x, chartData[1].y)}
-                    {dataText('#0E26B1', chartData[2].x, chartData[2].y)}
-                    {dataText('green', chartData[3].x, chartData[3].y)}
-                </div>
-            </div>
-            <div style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center'
-            }}>
-                <div style={{
-                    display: 'flex',
-                    height: '300px',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'flex-end',
-                    marginBottom: '20px'
-                }}>
+            {
+                props.assignedTickets.result && (
+                    <>
+                        {/* Donut chart */}
+                        <div style={{ width: '400px' }}>
+                            <ChartDonut
+                                constrainToVisibleArea={true}
+                                data={chartData}
+                                donutOrientation="top"
+                                height={240}
+                                labels={({ datum }) => `${datum.x}: ${datum.y}%`}
+                                padding={{
+                                    bottom: 20, // Adjusted to accommodate legend
+                                    left: 20,
+                                    right: 20,
+                                    top: 20
+                                }}
+                                width={300}
+                                colorScale={['rgba(214, 69, 65, 1)', '#FDDA0D', '#0E26B1', 'green']}
+                            />
+                            <div className="dataText">
+                                <h2 style={{ textDecoration: 'underline' }}>Task Priorities :</h2>
+                                {dataText('rgba(214, 69, 65, 1)', chartData[0].x, chartData[0].y)}
+                                {dataText('#FDDA0D', chartData[1].x, chartData[1].y)}
+                                {dataText('#0E26B1', chartData[2].x, chartData[2].y)}
+                                {dataText('green', chartData[3].x, chartData[3].y)}
+                            </div>
+                        </div>
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center'
+                        }}>
+                            <div style={{
+                                display: 'flex',
+                                height: '300px',
+                                flexDirection: 'row',
+                                justifyContent: 'center',
+                                alignItems: 'flex-end',
+                                marginBottom: '20px'
+                            }}>
 
-                    <div title={`${countPercentStatus("Assigned")}% Assigned`} style={{
-                        width: '5vw',
-                        margin: '5px',
-                        height: `${assignedCurrent}px`,
-                        backgroundColor: '#77cad9'
-                    }}></div>
+                                <div title={`${countPercentStatus("Assigned")}% Assigned`} style={{
+                                    width: '5vw',
+                                    margin: '5px',
+                                    height: `${assignedCurrent}px`,
+                                    backgroundColor: '#77cad9'
+                                }}></div>
 
-                    <div title={`${countPercentStatus("Ongoing")}% Ongoing`} style={{
-                        width: '5vw',
-                        margin: '5px',
-                        height: `${ongoingCurrent}px`,
-                        backgroundColor: '#2c5f88'
-                    }}></div>
+                                <div title={`${countPercentStatus("Ongoing")}% Ongoing`} style={{
+                                    width: '5vw',
+                                    margin: '5px',
+                                    height: `${ongoingCurrent}px`,
+                                    backgroundColor: '#2c5f88'
+                                }}></div>
 
-                    <div title={`${countPercentStatus("Stuck")}% Stuck`} style={{
-                        width: '5vw',
-                        margin: '5px',
-                        height: `${stuckCurrent}px`,
-                        backgroundColor: '#f87969'
-                    }}></div>
+                                <div title={`${countPercentStatus("Stuck")}% Stuck`} style={{
+                                    width: '5vw',
+                                    margin: '5px',
+                                    height: `${stuckCurrent}px`,
+                                    backgroundColor: '#f87969'
+                                }}></div>
 
-                    <div title={`${countPercentStatus("Done")}% Done`} style={{
-                        width: '5vw',
-                        margin: '5px',
-                        height: `${doneCurrent}px`,
-                        backgroundColor: '#ced645'
-                    }}></div>
-                </div>
-                <div className="dataText" style={{
-                    alignItems: 'flex-end'
-                }}>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}>
-                        <h2 style={{ textDecoration: 'underline' }}>Current Progress :</h2>
-                    </div>
-                    <div>
-                        <div className="priority-circle" style={{ backgroundColor: '#77cad9' }}></div>
-                        <h3>{countStatusAmount('Assigned')} Assigned</h3>
-                    </div>
+                                <div title={`${countPercentStatus("Done")}% Done`} style={{
+                                    width: '5vw',
+                                    margin: '5px',
+                                    height: `${doneCurrent}px`,
+                                    backgroundColor: '#ced645'
+                                }}></div>
+                            </div>
+                            <div className="dataText" style={{
+                                alignItems: 'flex-end'
+                            }}>
+                                <div style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}>
+                                    <h2 style={{ textDecoration: 'underline' }}>Current Progress :</h2>
+                                </div>
+                                <div>
+                                    <div className="priority-circle" style={{ backgroundColor: '#77cad9' }}></div>
+                                    <h3>{countStatusAmount('Assigned')} Assigned</h3>
+                                </div>
 
-                    <div>
-                        <div className="priority-circle" style={{ backgroundColor: '#2c5f88' }}></div>
-                        <h3>{countStatusAmount('Ongoing')} Ongoing</h3>
-                    </div>
+                                <div>
+                                    <div className="priority-circle" style={{ backgroundColor: '#2c5f88' }}></div>
+                                    <h3>{countStatusAmount('Ongoing')} Ongoing</h3>
+                                </div>
 
-                    <div>
-                        <div className="priority-circle" style={{ backgroundColor: '#f87969' }}></div>
-                        <h3>{countStatusAmount('Stuck')} Stuck</h3>
-                    </div>
+                                <div>
+                                    <div className="priority-circle" style={{ backgroundColor: '#f87969' }}></div>
+                                    <h3>{countStatusAmount('Stuck')} Stuck</h3>
+                                </div>
 
-                    <div>
-                        <div className="priority-circle" style={{ backgroundColor: '#ced645' }}></div>
-                        <h3>{countStatusAmount('Done')} Done</h3>
-                    </div>
-                </div>
-            </div>
+                                <div>
+                                    <div className="priority-circle" style={{ backgroundColor: '#ced645' }}></div>
+                                    <h3>{countStatusAmount('Done')} Done</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </>
+                )
+            }
         </div >
     )
 }

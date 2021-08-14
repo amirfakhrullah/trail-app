@@ -54,11 +54,9 @@ export default function Dashboard() {
         } catch (error) {
             console.log(error)
         };
-        history.push('/');
         dispatch(ticketAction.getAssignedTickets(email));
         dispatch(ticketAction.getUserTickets(email));
         dispatch(userAction.getUserData(id));
-        history.push('/');
     }, [dispatch, email, history, id, name]);
 
     const { assignedTickets } = useSelector(state => state.ticket);

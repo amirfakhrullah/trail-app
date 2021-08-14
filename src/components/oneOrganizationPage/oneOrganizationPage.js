@@ -52,7 +52,6 @@ export default function OneOrganizationPage({ match }) {
                 }
             })
         dispatch(ticketAction.getTicketsByOrganizationId(match.params.id));
-
     }, [dispatch, match.params.id, history]);
 
     useEffect(() => {

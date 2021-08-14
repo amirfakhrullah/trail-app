@@ -174,8 +174,8 @@ export default function SideBar() {
                         flexDirection: 'column',
                         justifyContent: 'center'
                     }}>
-                        <Dropdown.Item className="dropdown-menu-user" onClick={() => window.location.href=`/user/${window.localStorage.getItem('userid')}/edit`}>Edit Info</Dropdown.Item>
-                        <Dropdown.Item className="dropdown-menu-user" onClick={() => window.location.href=`/user/${window.localStorage.getItem('userid')}/update-password`}>Change Password</Dropdown.Item>
+                        <Dropdown.Item className="dropdown-menu-user" onClick={() => window.location.href=`/user/edit`}>Edit Info</Dropdown.Item>
+                        <Dropdown.Item className="dropdown-menu-user" onClick={() => window.location.href=`/user/update-password`}>Change Password</Dropdown.Item>
                         <Dropdown.Item className="dropdown-menu-user" onClick={() => Logout()}>Logout</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
