@@ -1,4 +1,5 @@
 /* Left SideBar */
+
 .sideBarLeftFixed {
     position: fixed;
     left: 0;
@@ -43,9 +44,8 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
 }
 
-
-
 /* SideBar right */
+
 .sideBarRightFixed {
     position: fixed;
     right: 0;
@@ -64,26 +64,40 @@
 }
 
 @media only screen and (max-width: 1120px) {
-
     .sideBarFeature {
         width: 100%;
     }
-
-    .sideBarLeftFixed,
-    .sidebarContainer {
+    .sideBarLeftFixed, .sidebarContainer {
         width: 50px;
     }
-
     .sidebarContainer {
         padding: 25px;
     }
-
-
     .sidebarContainer h4 {
         display: none;
     }
-
+    .redCircleCounter {
+        display: none !important;
+    }
     .userNav {
         display: none;
     }
+}
+
+@media only screen and (max-width: 900px) {
+    .sideBarLeftFixed, .sidebarContainer {
+        width: 35px;
+    }
+    .sidebarContainer {
+        padding: 25px 10px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .sideBarLeftFixed, .sidebarContainer {
+        width: 30px;
+    }
+    .sidebarContainer {
+        padding: 15px 5px;
+    } 
 }

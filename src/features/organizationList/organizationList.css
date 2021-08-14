@@ -13,7 +13,6 @@
     margin-left: 1vw;
     margin-right: 1vw;
     width: 21vw;
-    transition: transform 0.2s ease-out;
 }
 
 .organizationCardContent {
@@ -28,7 +27,66 @@
 
 .organizationCard:hover {
     cursor: pointer;
-    /* transform: scale(1.03); */
     background-color: #8481e2;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+}
+
+@media only screen and (max-width: 900px) {
+    .organizationList {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+    }
+
+    .organizationCard {
+        width: 500px
+    };
+}
+
+@media only screen and (max-width: 650px) {
+    .organizationList {
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+    }
+
+    .organizationCard {
+        width: 400px
+    };
+}
+
+@media only screen and (max-width: 550px) {
+    .organizationList {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+    }
+
+    .organizationCard {
+        width: 300px
+    };
+}
+
+@media only screen and (max-width: 480px) {
+    .organizationList {
+        display: flex;
+        flex-direction: column;
+        width: 65vw;
+    }
+
+    .organizationCard {
+        width: 65vw
+    };
+}
+
+@media only screen and (max-width: 370px) {
+    .organizationList {
+        display: flex;
+        flex-direction: column;
+        width: 55vw;
+    }
+
+    .organizationCard {
+        width: 55vw
+    };
 }

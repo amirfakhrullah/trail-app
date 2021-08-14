@@ -102,10 +102,11 @@ export default function OneTicketPage({ match }) {
                                     borderRadius: '5px',
                                     color: 'black'
                                 }}
+                                value={ticket.description}
                                 rows="7"
                                 className="ticket-input"
                                 disabled
-                            >{ticket.description}</textarea>
+                            />
                             <p style={{ margin: '10px 20px 10px 10px' }}><span style={{
                                 color: 'rgb(209, 207, 207)'
                             }}>Opened by:</span> {ticket.creator.email}</p>

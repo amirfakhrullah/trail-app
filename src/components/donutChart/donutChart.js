@@ -123,7 +123,7 @@ export default function DonutChart(props) {
                 props.assignedTickets.result && (
                     <>
                         {/* Donut chart */}
-                        <div style={{ width: '400px' }}>
+                        <div className="donutCircle" style={{ width: '400px' }}>
                             <ChartDonut
                                 constrainToVisibleArea={true}
                                 data={chartData}
@@ -147,51 +147,29 @@ export default function DonutChart(props) {
                                 {dataText('green', chartData[3].x, chartData[3].y)}
                             </div>
                         </div>
-                        <div style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center'
-                        }}>
-                            <div style={{
-                                display: 'flex',
-                                height: '300px',
-                                flexDirection: 'row',
-                                justifyContent: 'center',
-                                alignItems: 'flex-end',
-                                marginBottom: '20px'
-                            }}>
-
-                                <div title={`${countPercentStatus("Assigned")}% Assigned`} style={{
-                                    width: '5vw',
-                                    margin: '5px',
+                        <div className="barchartContainer">
+                            <div className="barchart">
+                                <div className="oneBar" title={`${countPercentStatus("Assigned")}% Assigned`} style={{
                                     height: `${assignedCurrent}px`,
                                     backgroundColor: '#77cad9'
                                 }}></div>
 
-                                <div title={`${countPercentStatus("Ongoing")}% Ongoing`} style={{
-                                    width: '5vw',
-                                    margin: '5px',
+                                <div className="oneBar" title={`${countPercentStatus("Ongoing")}% Ongoing`} style={{
                                     height: `${ongoingCurrent}px`,
                                     backgroundColor: '#2c5f88'
                                 }}></div>
 
-                                <div title={`${countPercentStatus("Stuck")}% Stuck`} style={{
-                                    width: '5vw',
-                                    margin: '5px',
+                                <div className="oneBar" title={`${countPercentStatus("Stuck")}% Stuck`} style={{
                                     height: `${stuckCurrent}px`,
                                     backgroundColor: '#f87969'
                                 }}></div>
 
-                                <div title={`${countPercentStatus("Done")}% Done`} style={{
-                                    width: '5vw',
-                                    margin: '5px',
+                                <div className="oneBar" title={`${countPercentStatus("Done")}% Done`} style={{
                                     height: `${doneCurrent}px`,
                                     backgroundColor: '#ced645'
                                 }}></div>
                             </div>
-                            <div className="dataText" style={{
-                                alignItems: 'flex-end'
-                            }}>
+                            <div className="dataText data-text-status">
                                 <div style={{
                                     display: 'flex',
                                     alignItems: 'center',

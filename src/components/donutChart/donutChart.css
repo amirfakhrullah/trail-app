@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-around;
     padding-bottom: 30px;
-};
+}
 
 .dataText {
     display: flex;
@@ -21,4 +21,65 @@
 
 .dataText div h3 {
     margin-left: 5px;
+}
+
+.barchartContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: 'center'
+}
+
+.barchart {
+    display: flex;
+    height: 300px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 20px
+}
+
+.oneBar {
+    margin: 5px;
+    width: 5vw;
+}
+
+.data-text-status {
+    align-items: center;
+}
+
+@media only screen and (max-width: 550px) {
+    .donutChart {
+        flex-direction: column;
+        width: 280px;
+    }
+    .donutCircle {
+        width: 280px !important;
+    }
+
+    .oneBar {
+        width: 50px;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .donutChart {
+        flex-direction: column;
+        width: 65vw;
+    }
+
+    .donutCircle {
+        display: none;
+    }
+
+    .barchart {
+        height: 200px;
+    }
+
+    .oneBar {
+        width: 13vw;
+    }
+
+    .data-text-status {
+        display: none;
+    }
 }

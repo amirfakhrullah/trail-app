@@ -56,3 +56,77 @@
 .add-member:hover {
     background-color: rgba(148, 148, 148, 0.4) !important;
 }
+
+@media only screen and  (max-width: 900px) {
+    .oneOrganizationPage {
+        margin-left: 100px;
+        width: 500px;
+        margin: 5vh auto;
+    }
+
+    .dropdown-member {
+        padding: 2px !important;
+    }
+
+    .edit-bttnOrg {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    .edit-bttnOrg button {
+        padding: 10px 15px;
+        font-size: 10px;
+    }
+}
+
+@media only screen and  (max-width: 650px) {
+    .oneOrganizationPage {
+        width: 400px
+    }
+
+    .edit-bttnOrg {
+        width: 400px
+    }
+
+    .add-ticket {
+        font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .oneOrganizationPage {
+        width: 300px;
+        margin: 5vh 2vh 2vh 100px;
+    }
+
+    .edit-bttnOrg {
+        width: 300px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .oneOrganizationPage {
+        width: 80vw;
+        margin: 80px 2vh 2vh 50px;
+    }
+
+    .edit-bttnOrg {
+        width: 80vw;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .oneOrganizationPage {
+        width: 60vw;
+        margin: 80px 2vh 2vh 50px;
+    }
+
+    .edit-bttnOrg {
+        width: 60vw;
+        margin-top: 20px;
+    }
+
+    .members-list {
+        display: none;
+    }
+}

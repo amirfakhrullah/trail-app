@@ -96,8 +96,8 @@ export default function OneOrganizationPage({ match }) {
                         <h1 style={{
                             margin: '0px'
                         }}>{organizationData.name}</h1>
-                        <Dropdown>
-                            <Dropdown.Toggle variant="success" id="dropdown-basic2" title="Members" style={{
+                        <Dropdown className="members-list">
+                            <Dropdown.Toggle className="dropdown-member" variant="success" id="dropdown-basic2" title="Members" style={{
                                 backgroundColor: 'rgba(255, 255, 255, 0.4)',
                                 padding: '7px 10px',
                                 borderRadius: '5px',
@@ -111,7 +111,7 @@ export default function OneOrganizationPage({ match }) {
                                 <ArrowDropDownIcon style={{ color: 'white' }} />
                             </Dropdown.Toggle>
 
-                            <Dropdown.Menu style={{
+                            <Dropdown.Menu className="dropdown-member-list" style={{
                                 backgroundColor: 'grey',
                                 display: 'flex',
                                 flexDirection: 'column',
@@ -127,7 +127,7 @@ export default function OneOrganizationPage({ match }) {
                         {
                             organizationData.admin._id === window.localStorage.getItem('userid') && (
                                 <Dropdown>
-                                    <Dropdown.Toggle title="Settings" variant="success" id="dropdown-basic" style={{
+                                    <Dropdown.Toggle className="dropdown-member" title="Settings" variant="success" id="dropdown-basic" style={{
                                         backgroundColor: 'rgba(255, 255, 255, 0.4)',
                                         padding: '6px 5px 2px 5px',
                                         borderRadius: '5px',
@@ -139,7 +139,7 @@ export default function OneOrganizationPage({ match }) {
                                         <ArrowDropDownIcon style={{ color: 'white' }} />
                                     </Dropdown.Toggle>
 
-                                    <Dropdown.Menu style={{
+                                    <Dropdown.Menu className="dropdown-member-list" style={{
                                         backgroundColor: 'grey',
                                         display: 'flex',
                                         flexDirection: 'column',

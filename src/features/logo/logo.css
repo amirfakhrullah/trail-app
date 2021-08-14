@@ -17,3 +17,32 @@
     height: 40px;
     width: auto;
 }
+
+@media only screen and (max-width: 900px) {
+    .logoFeature {
+        margin: 20px 10px;
+        margin-bottom: 80px;
+    }
+
+    .logoFeatureContainer {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+        display: flex;
+    }
+
+    .logoFeatureContainer img {
+        height: 25px;
+    } 
+}
+
+@media only screen and (max-width: 480px) {
+    .logoFeatureContainer {
+        height: 30px;
+        width: 30px;
+    }
+
+    .logoFeatureContainer img {
+        height: 15px;
+    } 
+}

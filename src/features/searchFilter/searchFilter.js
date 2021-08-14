@@ -69,7 +69,7 @@ export default function SearchFilter() {
     })
 
     return (
-        <div style={{
+        <div className="searchFilter" style={{
             display: 'flex',
             alignItems: 'center',
             marginTop: '20px'

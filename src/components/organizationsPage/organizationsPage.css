@@ -17,3 +17,38 @@
 .addOrgBttn:hover {
     background-color: rgba(148, 148, 148, 0.4);
 }
+
+@media only screen and  (max-width: 900px) {
+    .organizationsPage {
+        margin-left: 100px;
+        width: 500px;
+        margin: 5vh auto;
+    }
+}
+
+@media only screen and  (max-width: 650px) {
+    .organizationsPage {
+        width: 400px
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .organizationsPage {
+        width: 300px;
+        margin: 5vh 2vh 2vh 100px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .organizationsPage {
+        width: 80vw;
+        margin: 80px 2vh 2vh 50px;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .organizationsPage {
+        width: 60vw;
+        margin: 80px 2vh 2vh 50px;
+    }
+}

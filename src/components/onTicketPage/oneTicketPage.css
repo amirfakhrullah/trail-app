@@ -3,6 +3,10 @@
     margin-left: 25vw;
 }
 
+.ticketCard {
+    width: 700px;
+}
+
 .title-card:hover {
     text-decoration: none !important;
 }
@@ -46,4 +50,41 @@
 
 .backIcon:hover {
     color: #6260a0;
+}
+
+@media only screen and  (max-width: 900px) {
+    .oneTicketPage {
+        margin-left: 100px;
+        width: 500px;
+        margin: 5vh auto;
+    }
+
+    .ticketCard {
+        width: 500px;
+    }
+
+    .edit-bttn {
+        width: 500px;
+    }
+}
+
+@media only screen and  (max-width: 650px) {
+    .oneTicketPage {
+        width: 400px
+    }
+
+    .ticketCard {
+        width: 400px;
+    }
+
+    .edit-bttn {
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .oneTicketPage {
+        width: 300px;
+        margin: 5vh 2vh 2vh 100px;
+    }
 }

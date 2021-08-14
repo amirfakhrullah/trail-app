@@ -31,3 +31,51 @@
     font-weight: 600;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 900px) {
+    .dashboardCard {
+        border-radius: 15px;
+        width: 500px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .dashboardCard {
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .dashboardCard {
+        width: 300px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .dashboardCard {
+        width: 65vw;
+    }
+
+    .bttn h4 {
+        font-size: 10px !important;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .dashboardCard {
+        width: 65vw;
+        padding: 15px 15px 5px 15px;
+    }
+
+    .priority-navigator-container {
+        justify-content: space-between;
+    }
+
+    .bttn {
+        padding-bottom: 5px
+    }
+
+    .bttn h4 {
+        font-size: 8px !important;
+    }
+}

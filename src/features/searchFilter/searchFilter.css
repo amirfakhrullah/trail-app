@@ -2,3 +2,38 @@
     color: white;
     width: 40vw;
 }
+
+@media only screen and  (max-width: 900px) {
+    .input-material-ui {
+        width: 300px;
+    }
+}
+
+@media only screen and  (max-width: 650px) {
+    .input-material-ui {
+        width: 200px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .searchFilter {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start !important;
+        width: 300px !important;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .assignedPage {
+        width: 80vw;
+        margin: 80px 2vh 2vh 50px;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .assignedPage {
+        width: 60vw;
+        margin: 80px 2vh 2vh 50px;
+    }
+}

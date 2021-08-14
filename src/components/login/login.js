@@ -50,7 +50,7 @@ export default function Login({ match }) {
                     }}>
                         <img src={trail} alt="logo" width="50px" />
                     </div>
-                    <h1 style={{ fontSize: "50px" }}>Trail App</h1>
+                    <h1 className="trailAppText">Trail App</h1>
                 </div>
                 {
                     loading === 'fail' && <h2>Sign in failed!</h2>
@@ -78,7 +78,8 @@ export default function Login({ match }) {
                                         try {
                                             window.localStorage.setItem('token', result.token);
                                             if (!match.params.id && !match.params.key) {
-                                                history.push('/');
+                                                // history.push('/');
+                                                window.location.href = '/'
                                             } else {
                                                 window.location.href = `/organizations/${match.params.id}/auth/${match.params.key}`
                                             }

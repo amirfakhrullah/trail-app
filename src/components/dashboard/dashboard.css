@@ -2,3 +2,38 @@
     margin-top: 8vh;
     margin-left: 25vw;
 }
+
+@media only screen and  (max-width: 900px) {
+    .dashboardPage {
+        margin-left: 100px;
+        width: 500px;
+        margin: 5vh auto;
+    }
+}
+
+@media only screen and  (max-width: 650px) {
+    .dashboardPage {
+        width: 400px
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .dashboardPage {
+        width: 300px;
+        margin: 5vh 2vh 2vh 100px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .dashboardPage {
+        width: 80vw;
+        margin: 80px 2vh 2vh 50px;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .dashboardPage {
+        width: 60vw;
+        margin: 80px 2vh 2vh 50px;
+    }
+}

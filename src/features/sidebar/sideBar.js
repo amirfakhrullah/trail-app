@@ -110,8 +110,8 @@ export default function SideBar() {
                 {icon}
                 <h4>{text}</h4>
                 {
-                    text === "Assigned" && (
-                        <div style={assignedTickets.result && redCircleSize(findUndoneTickets(assignedTickets.result).length)}>
+                    (text === "Assigned" && (assignedTickets.result && assignedTickets.result.length !== 0)) && (
+                        <div className="redCircleCounter" style={assignedTickets.result && redCircleSize(findUndoneTickets(assignedTickets.result).length)}>
                             <p>{assignedTickets.result && findUndoneTickets(assignedTickets.result).length}</p>
                         </div>
                     )

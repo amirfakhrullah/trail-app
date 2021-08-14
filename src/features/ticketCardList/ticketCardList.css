@@ -1,4 +1,3 @@
-
 .ticketCard {
     background-color: rgba(255, 255, 255, 0.4);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -17,8 +16,7 @@
     flex-direction: column;
 }
 
-.ticketCard__left h3:hover,
-.ticketCard__left .spanOrg:hover {
+.ticketCard__left h3:hover, .ticketCard__left .spanOrg:hover {
     cursor: pointer;
     text-decoration: underline;
 }
@@ -43,4 +41,44 @@
 .status-container p {
     text-align: center;
     font-size: 14px;
+}
+
+@media only screen and (max-width: 900px) {
+    .ticketCard {
+        border-radius: 15px;
+        width: 500px;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .ticketCard {
+        width: 400px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .ticketCard {
+        width: 300px;
+    }
+    .status-container,
+    .priority-circle {
+        height: 10px;
+        width: 10px;
+    }
+    .status-container p {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .ticketCard {
+        width: 65vw;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .ticketCard {
+        width: 65vw;
+        padding: 15px;
+    }
 }

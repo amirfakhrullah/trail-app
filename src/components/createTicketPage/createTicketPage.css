@@ -22,3 +22,48 @@
     background-color: rgba(255, 255, 255, 0.6);
     border: 1px solid #919090;
 }
+
+@media only screen and  (max-width: 900px) {
+    .createTicketPage {
+        margin-left: 100px;
+        width: 500px;
+        margin: 5vh auto;
+    }
+
+    .createTicketPage__container {
+        width: 500px;
+    }
+
+    .ticket-input {
+        width: 400px;
+    }
+
+    .form-error {
+        width: 400px;
+    }
+}
+
+@media only screen and  (max-width: 650px) {
+    .createTicketPage {
+        width: 400px
+    }
+
+    .createTicketPage__container {
+        width: 400px;
+    }
+
+    .ticket-input {
+        width: 300px;
+    }
+
+    .form-error {
+        width: 300px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .createTicketPage {
+        width: 300px;
+        margin: 5vh 2vh 2vh 100px;
+    }
+}
