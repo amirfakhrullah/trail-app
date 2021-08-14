@@ -79,13 +79,14 @@ export default function Login({ match }) {
                                             window.localStorage.setItem('token', result.token);
                                             if (match.params.id && match.params.key) {
                                                 window.location.href = `/organizations/${match.params.id}/auth/${match.params.key}`
+                                            } else {
+                                                history.push('/');
                                             }
-                                            history.push('/');
                                             // window.location.href = '/';
                                         } catch (err) {
                                             console.log(err);
                                         }
-                                    } 
+                                    }
                                 })
                                 .catch(err => console.log(err))
                         }}

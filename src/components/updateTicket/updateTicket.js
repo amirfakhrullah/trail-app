@@ -85,7 +85,6 @@ export default function UpdateTicket({ match }) {
                                 status: values.status,
                                 priority: values.status === 'Done' ? 'Done' : values.priority
                             }));
-                            console.log('Done')
                         }}
                     >
                         {({

@@ -5,7 +5,7 @@ const initialState = {
     allUsers: [],
     userData: {},
     loading: 'idle',
-    message: {}
+    message: ''
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -21,6 +21,12 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 userData: action.payload,
+                loading: 'success'
+            };
+        case UPDATE_USER:
+            return {
+                ...state,
+                message: action.payload,
                 loading: 'success'
             };
         case LOADING:

@@ -79,7 +79,7 @@ export default function InviteUser({ match }) {
         content = (
             <div className='oneOrganizationPage'>
                 <ArrowBackIcon onClick={() => window.location.href = `/organizations/${match.params.id}`} className="backIcon" style={{ fontSize: '30px', color: '#8481E2' }} />
-                <h1>Invite member</h1>
+                <h1>Invite user to join the organization</h1>
                 {/* <div className="userNameSearch">
                     <Input className="input-material-ui"
                         style={{ color: 'white', maxWidth: '400px', margin: '20px 0px 10px 0px' }}

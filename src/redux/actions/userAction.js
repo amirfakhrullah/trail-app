@@ -69,3 +69,45 @@ export const getUserData = id => {
         }
     }
 }
+
+export const updateUserData = data => {
+
+    const { id, name, avatar, description, position } = data;
+
+    return async dispatch => {
+
+        dispatch({
+            type: LOADING,
+        });
+
+        const result = await fetch(`${BACKEND_URL}/api/users/${id}`, {
+            method: 'PUT',
+            headers: {
+                'auth-token': window.localStorage.getItem('token'),
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name,
+                avatar, 
+                description,
+                position
+            })
+        });
+        const resultJson = await result.json();
+
+        if (resultJson.success) {
+            dispatch({
+                type: UPDATE_USER,
+                payload: resultJson.message
+            });
+        } else {
+            dispatch({
+                type: FAIL,
+                payload: resultJson.message
+            });
+        }
+
+        return resultJson;
+    }
+}
