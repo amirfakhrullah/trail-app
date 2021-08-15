@@ -50,7 +50,7 @@ export default function Login({ match }) {
                     }}>
                         <img src={trail} alt="logo" width="50px" />
                     </div>
-                    <h1 className="trailAppText">Trail App</h1>
+                    <h1 className="trailAppText">Traill App</h1>
                 </div>
                 {
                     loading === 'fail' && <h2>Sign in failed!</h2>

@@ -5,7 +5,7 @@ export const LOGIN_USER_FAIL = 'LOGIN_USER_FAIL';
 export const LOADING = 'LOADING';
 
 
-export const BACKEND_URL = 'http://192.168.0.189:3001'; //Wifi 2.4
+export const BACKEND_URL = 'https://limitless-falls-19200.herokuapp.com'; //Wifi 2.4
 
 
 export const registerUser = authData => {

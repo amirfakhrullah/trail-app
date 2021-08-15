@@ -65,7 +65,7 @@ export default function SignUp() {
                         }}>
                         <img src={trail} alt="logo" width="50px" />
                     </div>
-                    <h1 className="trailAppText">Trail App</h1>
+                    <h1 className="trailAppText">Traill App</h1>
                 </div>
                 { 
                     loading === 'fail' && <h2>Registration failed!</h2>
@@ -75,7 +75,7 @@ export default function SignUp() {
                 }
                 <div className="login-container">
                     <h1 style={{marginBottom: '10px'}}>Register Now.</h1>
-                    <h4>Welcome to Trail App!</h4>
+                    <h4>Welcome to Traill App!</h4>
                     <h4 style={{marginBottom: '10px'}}>Create an account to get started.</h4>
                     <Formik
                         initialValues={{

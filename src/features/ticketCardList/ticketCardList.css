@@ -4,7 +4,7 @@
     border-radius: 20px;
     padding: 15px 30px;
     margin-top: 20px;
-    width: 50vw;
+    width: 50vw !important;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -46,19 +46,19 @@
 @media only screen and (max-width: 900px) {
     .ticketCard {
         border-radius: 15px;
-        width: 500px;
+        width: 500px !important;
     }
 }
 
 @media only screen and (max-width: 650px) {
     .ticketCard {
-        width: 400px;
+        width: 400px !important;
     }
 }
 
 @media only screen and (max-width: 550px) {
     .ticketCard {
-        width: 300px;
+        width: 300px !important;
     }
     .status-container,
     .priority-circle {
@@ -72,7 +72,7 @@
 
 @media only screen and (max-width: 480px) {
     .ticketCard {
-        width: 65vw;
+        width: 65vw !important;
     }
 }
 
