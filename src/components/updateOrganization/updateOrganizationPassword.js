@@ -21,7 +21,7 @@ const formSchema = yup.object({
             "8 Characters, One Uppercase, One Lowercase, One Number and one special case"
         ),
     confirmPassword: yup.string()
-        .oneOf([yup.ref('password'), null], 'Passwords must match')
+        .oneOf([yup.ref('newPassword'), null], 'Passwords must match')
 });
 
 export default function UpdateOrganizationPassword({ match }) {
