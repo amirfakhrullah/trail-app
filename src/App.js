@@ -27,12 +27,14 @@ import EditUserInfo from './components/editUserInfo/editUserInfo';
 import UpdateUserPassword from './components/updateUserPassword/updateUserPassword';
 import ForgotPassword from './components/forgotPassword/forgotPassword';
 import ResetPassword from './components/resetPassword/resetPassword';
+import ClosePage from './components/closePage/closePage';
 
 export default function App() {
   return (
     <div>
       <div style={{ minHeight: '85vh' }}>
         <Router>
+          <Route path="/" component={ClosePage} />
           <Switch>
             <Route exact path="/organizations/:id/auth/:key" component={OrganizationVerification} />
             <Route exact path="/login/organizations/:id/auth/:key" component={Login} />
