@@ -1,5 +1,5 @@
 /* eslint-disable default-case */
-import { GET_ALL_USERS, GET_USER_DATA, UPDATE_USER, UPDATE_USER_PASSWORD, FORGOT_PASSWORD, RESET_PASSWORD, DELETE_USER, LOADING, FAIL } from '../actions/userAction';
+import { GET_ALL_USERS, GET_USER_DATA, UPDATE_USER, UPDATE_USER_PASSWORD, FORGOT_PASSWORD, RESET_PASSWORD, LOADING, FAIL } from '../actions/userAction';
 
 const initialState = {
     allUsers: [],

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './inviteUser.css';
 
 import Loading from '../loading/loading';

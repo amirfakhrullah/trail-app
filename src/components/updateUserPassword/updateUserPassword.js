@@ -7,7 +7,6 @@ import Loading from '../loading/loading';
 
 import { Formik } from 'formik';
 import * as yup from 'yup';
-import { useHistory } from 'react-router-dom';
 
 const formSchema = yup.object({
     newPassword: yup
@@ -25,7 +24,6 @@ const formSchema = yup.object({
 export default function UpdateUserPassword() {
 
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const [ loadingState, setLoadingState ] = useState(null);
 
